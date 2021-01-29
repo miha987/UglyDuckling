@@ -11,7 +11,7 @@ namespace UglyDuckling
 {
 	class Scene
 	{
-		private EntityManager EntityManager;
+		protected EntityManager EntityManager;
 		private TextureManager TextureManager;
 		private SoundManager SoundManager;
 		private SpawnManager SpawnManager;
