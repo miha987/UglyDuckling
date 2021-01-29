@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using UglyDuckling.Code.ChickenControl;
 using UglyDuckling.Code.Entities;
+using UglyDuckling.Code.HUDs;
+using UglyDuckling.Code.Mechanics;
 
 namespace UglyDuckling.Code.Scenes
 {
@@ -21,6 +24,16 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("TestImage", "test");
 			AddTexture("walk1_test", "walk1_test");
 			AddTexture("bg_test_1", "background");
+			AddTexture("walk1_test", "walk1_test");
+			AddTexture("arrows", "arrows");
+			AddTexture("bar_placeholder", "bar");
+		}
+
+		public override void LoadSounds()
+		{
+			base.LoadSounds();
+
+			AddSong("AQUAGON_-_Ugly_Duckling_OST_1_Wip_4", "main_theme");
 		}
 
 		public override void Initialize()
@@ -31,8 +44,20 @@ namespace UglyDuckling.Code.Scenes
 			AddEntity(player);
 
 			AddEntity(new Background(new Vector2(0, 0)));
+			GameState.Instance.SetVar<int>("BEAT_Y", GetWindowHeight() - 150);
+
+			BeatHUD beatHUD = new BeatHUD();
+			AddEntity(beatHUD);
 
 			Camera.FollowEntity(player);
+
+			GameState.Instance.SetVar<bool>("is_beat", false);
+			GameState.Instance.SetVar<Beat>("current_beat", null);
+			GameState.Instance.SetVar<List<Beat>>("beat_list", new List<Beat>());
+
+			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme");
+			beatManager.PlaySong();
+			AddSpawnController(beatManager);
 		}
 
 		public override void Update(GameTime gameTime)

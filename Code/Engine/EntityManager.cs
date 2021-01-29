@@ -10,7 +10,6 @@ namespace UglyDuckling
 {
 	class EntityManager
 	{
-		//private List<Entity> Entities;
 		private QuadTree EntitiesTree;
 		private List<Entity> EntitiesToRemove;
 		private List<Entity> EntitiesToAdd;
