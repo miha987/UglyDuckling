@@ -14,14 +14,37 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("TestImage", "test");
+			AddTexture("walk1_test", "walk1_test");
 		}
 
 		public override void Initialize()
 		{
 			base.Initialize();
 
-			TestEntity entity = new TestEntity(new Vector2(200, 200));
-			AddEntity(entity);
+			TestEntity[] corners = new TestEntity[] {
+				// center
+				new TestEntity(new Vector2(    0,    0)),
+				// corners
+				new TestEntity(new Vector2(-1500, -800)),
+				new TestEntity(new Vector2(+1500, +800)),
+				new TestEntity(new Vector2(+1500, -800)),
+				new TestEntity(new Vector2(-1500, +800)),
+				// mid-points
+				new TestEntity(new Vector2(    0, -800)),
+				new TestEntity(new Vector2(    0, +800)),
+				new TestEntity(new Vector2(+1500,    0)),
+				new TestEntity(new Vector2(-1500,    0)),
+			};
+			foreach (TestEntity corner in corners)
+            {
+				corner.SetScale(0.12f);
+				AddEntity(corner);
+			}
+
+			Player player = new Player(new Vector2(0, 0));
+			AddEntity(player);
+
+			Camera.FollowEntity(player);
 		}
 
 		public override void Update(GameTime gameTime)

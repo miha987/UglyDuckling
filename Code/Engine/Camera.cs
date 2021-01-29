@@ -37,7 +37,7 @@ namespace UglyDuckling
 
 			this.FollowingEntity = null;
 
-			this.FollowMode = "center";
+			this.FollowMode = "zone";
 
 			this.FollowXAxis = true;
 			this.FollowYAxis = true;

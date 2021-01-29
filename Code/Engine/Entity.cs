@@ -46,6 +46,7 @@ namespace UglyDuckling
 		private int Z;
 
 		private float Scale;
+		protected bool horizontalFlip = false;
 
 		private Rectangle BoundingRectangle;
 
@@ -78,7 +79,7 @@ namespace UglyDuckling
 
 			this.Z = 10;
 
-			this.Scale = 1;
+			this.Scale = 1.0f;
 
 			this.Static = false;
 			this.Pausable = true;
@@ -263,7 +264,7 @@ namespace UglyDuckling
 			return this.Z;
 		}
 
-		public void SetScale(int scale)
+		public void SetScale(float scale)
 		{
 			this.Scale = scale;
 		}
@@ -272,7 +273,7 @@ namespace UglyDuckling
 		{
 			return this.Scale;
 		}
-
+		
 		public void SetStatic(bool isStatic)
 		{
 			this.Static = isStatic;
@@ -412,6 +413,12 @@ namespace UglyDuckling
 			this.Position.Y += dY;
 		}
 
+		public void Move(Vector2 delta)
+		{
+			this.Position.X += delta.X;
+			this.Position.Y += delta.Y;
+		}
+
 		public bool IsOnScreen(Vector2 position)
 		{
 			if (this.EntityManager == null)
@@ -448,10 +455,25 @@ namespace UglyDuckling
 			//spriteBatch.Draw(this.Texture, this.Position, this.TintColor);
 
 			if (this.Animator.IsEnabled)
+            {
 				this.Animator.Draw(spriteBatch, dstRect, this.TintColor, this.RotationAngle, this.OriginPoint, this.Scale);
+			}
 			else
-				spriteBatch.Draw(this.Texture, new Vector2(projectedPosition.X, projectedPosition.Y), null, this.TintColor, this.RotationAngle, this.OriginPoint, this.Scale, SpriteEffects.None, 0);
-				//spriteBatch.Draw(this.Texture, dstRect, null, this.TintColor, this.RotationAngle, this.OriginPoint, 2.0f, SpriteEffects.None, 0);
+            {
+				spriteBatch.Draw(
+					this.Texture, 
+					new Vector2(projectedPosition.X, projectedPosition.Y), 
+					null, 
+					this.TintColor, 
+					this.RotationAngle, 
+					this.OriginPoint, 
+					this.Scale, 
+					this.horizontalFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 
+					0
+				);
+			}
+				
+			//spriteBatch.Draw(this.Texture, dstRect, null, this.TintColor, this.RotationAngle, this.OriginPoint, 2.0f, SpriteEffects.None, 0);
 			//spriteBatch.Draw(this.Texture, new Rectangle((int)projectedPosition.X, (int)projectedPosition.Y, this.Width, this.Height), this.TintColor);
 		}
 	}
