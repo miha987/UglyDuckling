@@ -47,12 +47,16 @@ namespace UglyDuckling.Code.ChickenControl
         {
             // prepare new points
             Checkpoints.AddRange(new Checkpoint[] {
-                new Checkpoint(new Vector2(-750, -400), 5),
-                new Checkpoint(new Vector2(+750, -400), 5),
-                new Checkpoint(new Vector2(+750, +400), 5),
-                new Checkpoint(new Vector2(-750, +400), 5),
+                // in front of coop
+                new Checkpoint(new Vector2(-320, -110), 5),
+                // sandbox
+                new Checkpoint(new Vector2(+270, -270), 5),
+                // near the water
+                new Checkpoint(new Vector2(140, +340), 5),
+                // bottom-left corner grass
+                new Checkpoint(new Vector2(-510, +360), 5),
                 // back to 1st point. Wait time doesnt matter as theres no "next" to go to.
-                new Checkpoint(new Vector2(-750, -400), 0)
+                new Checkpoint(new Vector2(-320, -110), 0),
             });
 
             // reset chicken positions by teleporting them to 1st point

@@ -62,7 +62,7 @@ namespace UglyDuckling
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.ForestGreen);
+            GraphicsDevice.Clear(new Color(163, 173, 113));
 
             _spriteBatch.Begin();
 
