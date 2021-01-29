@@ -8,7 +8,7 @@ namespace UglyDuckling.Code.Entities
         public Background(Vector2 position) : base(position)
         {
             SetTexture("background");
-            SetScale(0.35f);
+            SetScale(0.7f);
             SetZ(-20);
         }
     }

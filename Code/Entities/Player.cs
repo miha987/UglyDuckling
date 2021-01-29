@@ -13,10 +13,23 @@ namespace UglyDuckling.Code.Entities
 
 		public Player(Vector2 position) : base(position)
 		{
-			SetTexture("walk1_test");
+			SetTexture("player_idle");
+
+			InitializeAnimations();
 		}
 
-        public override void Update(GameTime gameTime)
+		public void InitializeAnimations()
+		{
+			EnableAnimator(6, 1);
+
+			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6 }, 0.0833);
+
+			this.AddAnimation(idleAnimation);
+
+			this.SetAnimation("idle");
+		}
+
+		public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 

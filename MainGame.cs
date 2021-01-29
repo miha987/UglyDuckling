@@ -13,7 +13,7 @@ namespace UglyDuckling
         public MainGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
