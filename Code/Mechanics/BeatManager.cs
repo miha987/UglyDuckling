@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,6 +43,8 @@ namespace UglyDuckling.Code.Mechanics
 			BeatRandom = new Random();
 
 			BeatList = new List<Beat>();
+
+			MediaPlayer.Volume = 0.2f;
 
 			Initialize();
 		}
