@@ -126,6 +126,11 @@ namespace UglyDuckling
 			this.TextureManager.AddTexture(name, newName);
 		}
 
+		public SoundManager GetSoundManager()
+		{
+			return SoundManager;
+		}
+
 		public void AddSong(string name, string newName = null)
 		{
 			SoundManager.AddSong(name, newName);

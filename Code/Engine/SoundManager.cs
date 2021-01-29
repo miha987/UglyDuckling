@@ -60,6 +60,11 @@ namespace UglyDuckling.Code.Engine
 			MediaPlayer.IsRepeating = isRepeating;
 		}
 
+		public double GetPlayPositionMilliseconds()
+		{
+			return MediaPlayer.PlayPosition.TotalMilliseconds;
+		}
+
 		public void StopSong()
 		{
 			MediaPlayer.Stop();
