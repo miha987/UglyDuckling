@@ -22,11 +22,12 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("TestImage", "test");
-			AddTexture("walk1_test", "walk1_test");
+			//AddTexture("walk1_test", "walk1_test");
 			AddTexture("bg_test_1", "background");
 			AddTexture("walk1_test", "walk1_test");
 			AddTexture("arrows", "arrows");
 			AddTexture("bar_placeholder", "bar");
+			AddTexture("idle_animation_1", "player_idle");
 		}
 
 		public override void LoadSounds()
