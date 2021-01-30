@@ -34,7 +34,7 @@ namespace UglyDuckling.Code.Scenes
 			//AddTexture("idle_animation_3", "player_idle");
 			AddTexture("banner_2", "banner");
 			AddTexture("footprint_1", "footprint");
-			AddTexture("suspicion_bar_1", "suspicion_bar");
+			AddTexture("suspicion_bar_1_transparent", "suspicion_bar");
 			AddTexture("seed1", "seed1");
 		}
 

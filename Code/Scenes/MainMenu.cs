@@ -29,10 +29,13 @@ namespace UglyDuckling.Code.Scenes
 		{
 			base.Update(gameTime);
 
-			if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+			KeyboardState keyState = Keyboard.GetState();
+			KeyboardState prevKeyState = GameState.Instance.GetPrevKeyboardState();
+
+			if (Keyboard.GetState().IsKeyDown(Keys.Escape) && !prevKeyState.IsKeyDown(Keys.Escape))
 				GameState.Instance.GetGameReference().Exit();
 
-			if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+			if (keyState.IsKeyDown(Keys.Enter) && !prevKeyState.IsKeyDown(Keys.Enter))
 				GameState.Instance.SetScene(new MainLevel());
 		}
 	}

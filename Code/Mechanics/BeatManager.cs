@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text;
 using UglyDuckling.Code.Engine;
 using UglyDuckling.Code.Entities;
+using UglyDuckling.Code.Scenes;
 
 namespace UglyDuckling.Code.Mechanics
 {
@@ -27,10 +28,13 @@ namespace UglyDuckling.Code.Mechanics
 		private double LastStartTime; // global, needed for detection if beat is current
 
 		private const double BEAT_TIME_THRESHOLD = 100;
+		private const double END_BEAT_TIME = 110000;
+		private const double WIN_TIME = 122000;
 
 		private List<Beat> BeatList;
 
 		private bool FirstBeat;
+
 
 		public BeatManager(SoundManager soundManager, string beatSongName, int beatStep=500)
 		{
@@ -119,11 +123,11 @@ namespace UglyDuckling.Code.Mechanics
 		{
 			base.Update(gameTime);
 			//Trace.WriteLine("tuki");
+			TimePassedOffset += gameTime.ElapsedGameTime.TotalMilliseconds;
+			TimePassedTotal += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-			if (Playing)
+			if (Playing && TimePassedTotal < END_BEAT_TIME)
 			{
-				TimePassedOffset += gameTime.ElapsedGameTime.TotalMilliseconds;
-				TimePassedTotal += gameTime.ElapsedGameTime.TotalMilliseconds;
 				GameState.Instance.SetVar<bool>("is_beat", false);
 
 				List<Beat> beatList = GameState.Instance.GetVar<List<Beat>>("beat_list");
@@ -159,7 +163,12 @@ namespace UglyDuckling.Code.Mechanics
 					GameState.Instance.SetVar<List<Beat>>("beat_list", beatList);
 				}
 
-			} 
+			}
+
+			if (TimePassedTotal > WIN_TIME)
+			{
+				GameState.Instance.SetScene(new WinScene());
+			}
 		}
 	}
 }
