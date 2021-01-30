@@ -457,7 +457,7 @@ namespace UglyDuckling
 
 			if (this.Animator.IsEnabled)
             {
-				this.Animator.Draw(spriteBatch, dstRect, this.TintColor, this.RotationAngle, this.OriginPoint, this.Scale);
+				this.Animator.Draw(spriteBatch, dstRect, this.TintColor, this.RotationAngle, this.OriginPoint, this.Scale, this.horizontalFlip);
 			}
 			else
             {

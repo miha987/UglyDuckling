@@ -114,7 +114,7 @@ namespace UglyDuckling
 			}
 		}
 
-		public void Draw(SpriteBatch spriteBatch, Rectangle dstRect, Color tintColor, float rotationAngle, Vector2 rotationOriginPoint, float scale)
+		public void Draw(SpriteBatch spriteBatch, Rectangle dstRect, Color tintColor, float rotationAngle, Vector2 rotationOriginPoint, float scale, bool horizontalFlip)
 		{
 			if (!this.IsEnabled || this.CurrentAnimation == null)
 				return;
@@ -129,7 +129,16 @@ namespace UglyDuckling
 
 			Rectangle sourceRect = new Rectangle(spriteX, spriteY, SpriteWidth, SpriteHeight);
 
-			spriteBatch.Draw(this.Texture, dstRect, sourceRect, tintColor, rotationAngle, rotationOriginPoint, SpriteEffects.None, 0);
+			spriteBatch.Draw(
+				this.Texture, 
+				dstRect, 
+				sourceRect, 
+				tintColor, 
+				rotationAngle, 
+				rotationOriginPoint,
+				horizontalFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 
+				0
+			);
 			//spriteBatch.Draw(this.Texture, new Vector2(spriteX, spriteY), sourceRect, tintColor, rotationAngle, rotationOriginPoint, scale, SpriteEffects.None, 0);
 		}
 	}
