@@ -48,7 +48,14 @@ namespace UglyDuckling
 			this.Width = width;
 			this.Height = height;
 
-			this.MoveZone = new Rectangle((int)(this.Width * 0.2), (int)(this.Height * 0.2), (int)(this.Width * 0.6), (int)(this.Height * 0.6));
+			double marginX = 0.4;
+			double marginY = 0.3;
+			int x = (int)(this.Width * marginX);
+			int y = (int)(this.Height * marginY);
+			int w = (int)(this.Width * (1 - marginX * 2));
+			int h = (int)(this.Height * (1 - marginY * 2));
+
+			this.MoveZone = new Rectangle(x, y, w, h);
 		}
 
 		public void FollowEntity(Entity entity)
