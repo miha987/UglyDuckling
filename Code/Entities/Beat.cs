@@ -10,10 +10,14 @@ namespace UglyDuckling.Code.Entities
 	class Beat : Entity
 	{
 		private const int SIZE = 64;
+		private const int SUSPICION_RATE = 10;
+		
 		public double StartTime;
 		public int Type; // 0 - UP, 1 - RIGHT, 2 - DOWN, 3 - LEFT
 
 		public static double SPEED_RATE = 0.4;
+
+		private bool Missed;
 
 		public Beat(Vector2 position, double startTime, int type) : base(position)
 		{
@@ -21,10 +25,13 @@ namespace UglyDuckling.Code.Entities
 			SetStatic(true);
 			SetZ(103);
 			AddTag("beat");
+			SetCollidable(false);
 			
 
 			StartTime = startTime;
 			Type = type;
+
+			Missed = false;
 		}
 
 		public override void Initialize()
@@ -51,6 +58,13 @@ namespace UglyDuckling.Code.Entities
 
 			if (GetProjectedPosition().X < 0)
 				RemoveBeat();
+
+			if (!Missed && GetProjectedPosition().X < GameState.Instance.GetCurrentScene().GetWindowWidth()/2 - GetWidth() - 5)
+			{
+				int suspicion = GameState.Instance.GetVar<int>("suspicion");
+				GameState.Instance.SetVar<int>("suspicion", suspicion + SUSPICION_RATE);
+				Missed = true;
+			}
 
 			float dX = -(float)SPEED_RATE * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 

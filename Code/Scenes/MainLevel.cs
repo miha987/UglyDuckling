@@ -15,6 +15,9 @@ namespace UglyDuckling.Code.Scenes
 		public MainLevel()
         {
 			this.ChickenController = new ChickenController(EntityManager, 4);
+
+			GameState.Instance.SetVar<int>("suspicion", 0);
+			GameState.Instance.SetVar<int>("max_suspicion", 100);
 		}
 
 		public override void LoadTextures()
@@ -52,11 +55,15 @@ namespace UglyDuckling.Code.Scenes
 			BeatHUD beatHUD = new BeatHUD();
 			AddEntity(beatHUD);
 
+			SuspicionBar suspicionBar = new SuspicionBar(new Vector2(GetWindowWidth() - 100, 200));
+			AddEntity(suspicionBar);
+
 			Camera.FollowEntity(player);
 
 			GameState.Instance.SetVar<bool>("is_beat", false);
 			GameState.Instance.SetVar<Beat>("current_beat", null);
 			GameState.Instance.SetVar<List<Beat>>("beat_list", new List<Beat>());
+
 
 			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme");
 			beatManager.PlaySong();
@@ -70,6 +77,16 @@ namespace UglyDuckling.Code.Scenes
 
 			if (Keyboard.GetState().IsKeyDown(Keys.Escape))
 				GameState.Instance.GetGameReference().Exit();
+
+			int suspicion = GameState.Instance.GetVar<int>("suspicion");
+			int maxSuspicion = GameState.Instance.GetVar<int>("max_suspicion");
+
+			if (suspicion >= maxSuspicion)
+			{
+				StopSong();
+				GameState.Instance.SetScene(new GameOverScene());
+			}
+
 		}
 	}
 }
