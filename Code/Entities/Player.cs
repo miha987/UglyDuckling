@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace UglyDuckling.Code.Entities
@@ -32,6 +33,7 @@ namespace UglyDuckling.Code.Entities
 		public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+			Debug.WriteLine("Player position: " + GetPosition());
 
 			CheckKeyboard(gameTime);
         }

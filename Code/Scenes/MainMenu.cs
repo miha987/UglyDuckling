@@ -22,7 +22,7 @@ namespace UglyDuckling.Code.Scenes
 
 
 			Background background = new Background(new Vector2(1000, 1000));
-			AddEntity(background);
+			// AddEntity(background);
 		}
 
 		public override void Update(GameTime gameTime)
