@@ -9,7 +9,7 @@ namespace UglyDuckling.Code.Entities
 	class Player : Entity
 	{
 
-		private const float MOVE_SPEED = 7f;
+		private const float MOVE_SPEED = 4f;
 
 		public Player(Vector2 position) : base(position)
 		{

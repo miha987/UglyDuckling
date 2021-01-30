@@ -21,11 +21,24 @@ namespace UglyDuckling.Code.Entities
 
 		public Chicken() : base(Vector2.Zero)
 		{
-			SetTexture("walk1_test");
-			Rotate(MathHelper.Pi);
+			SetTexture("player_idle");
+			//Rotate(MathHelper.Pi);
+
+			InitializeAnimations();
 		}
 
-        public override void Update(GameTime gameTime)
+		public void InitializeAnimations()
+		{
+			EnableAnimator(12, 1);
+
+			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833);
+
+			this.AddAnimation(idleAnimation);
+
+			this.SetAnimation("idle");
+		}
+
+		public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
