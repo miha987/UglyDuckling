@@ -28,7 +28,8 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("bg_test_1", "background");
 			AddTexture("arrows", "arrows");
 			AddTexture("bar_placeholder", "bar");
-			AddTexture("idle_animation_3", "player_idle");
+			AddTexture("temporary_chicken", "chicken");
+			//AddTexture("idle_animation_3", "player_idle");
 			AddTexture("banner_2", "banner");
 			AddTexture("footprint_1", "footprint");
 		}
@@ -69,6 +70,11 @@ namespace UglyDuckling.Code.Scenes
 
 			GameState.Instance.SetVar<int>("max_distance_to_chicken", 600);
 			GameState.Instance.SetVar<float>("distance_to_chicken_percent", 1f);
+
+			// BANNER HARDCODED STUFF
+			float bannerScaleFactor = (float)GameState.Instance.GetCurrentScene().GetWindowWidth() / 4850;
+			GameState.Instance.SetVar<int>("banner_height", (int)(bannerScaleFactor * 590));
+
 
 			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme");
 			beatManager.PlaySong();

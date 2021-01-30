@@ -38,9 +38,12 @@ namespace UglyDuckling.Code.Entities
 		{
 			base.Initialize();
 
+			int bannerHeight = GameState.Instance.GetVar<int>("banner_height");
+
 			SetOriginPoint(new Vector2(0, 0));
 			SetSize(SIZE, SIZE);
 			SetBoundingRectangle(new Rectangle(0, 0, SIZE, SIZE));
+			SetPosition(new Vector2(GetProjectedPosition().X, GameState.Instance.GetCurrentScene().GetWindowHeight() - bannerHeight / 2 - SIZE /2 ));
 		}
 
 		public void RemoveBeat()

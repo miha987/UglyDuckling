@@ -14,18 +14,20 @@ namespace UglyDuckling.Code.Entities
 
 		public Player(Vector2 position) : base(position)
 		{
-			SetTexture("player_idle");
+			SetTexture("chicken");
 
 			InitializeAnimations();
 		}
 
 		public void InitializeAnimations()
 		{
-			EnableAnimator(12, 1);
+			EnableAnimator(18, 1);
 
-			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833);
+			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833, true, true);
+			Animation downAnimation = new Animation("down", new int[] { 1, 2, 3, 13, 14, 15, 16, 17, 18, 10, 11, 12 }, 0.0416, true, true);
 
 			this.AddAnimation(idleAnimation);
+			this.AddAnimation(downAnimation);
 
 			this.SetAnimation("idle");
 		}
@@ -33,7 +35,7 @@ namespace UglyDuckling.Code.Entities
 		public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-			Debug.WriteLine("Player position: " + GetPosition());
+			//Debug.WriteLine("Player position: " + GetPosition());
 
 			CheckKeyboard(gameTime);
         }
@@ -44,6 +46,8 @@ namespace UglyDuckling.Code.Entities
 		{
 			KeyboardState keyState = Keyboard.GetState();
 			KeyboardState prevKeyState = GameState.Instance.GetPrevKeyboardState();
+
+			SetAnimation("idle");
 
 			Vector2 movement = new Vector2(0, 0);
 			if (keyState.IsKeyDown(Keys.S))
@@ -66,6 +70,12 @@ namespace UglyDuckling.Code.Entities
 			{
 				this.horizontalFlip = true;
 				movement.X += 1;
+
+			}
+
+			if (keyState.IsKeyDown(Keys.Down) && !prevKeyState.IsKeyDown(Keys.Down))
+			{
+				SetAnimation("down", true, true);
 			}
 
 			if (movement.X != 0 && movement.Y != 0)

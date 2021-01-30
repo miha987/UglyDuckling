@@ -26,17 +26,21 @@ namespace UglyDuckling.Code.Entities
 
 		public Chicken() : base(Vector2.Zero)
 		{
-			SetTexture("player_idle");
+			SetTexture("chicken");
+			//Rotate(MathHelper.Pi);
+
 			InitializeAnimations();
 		}
 
 		public void InitializeAnimations()
 		{
-			EnableAnimator(12, 1);
+			EnableAnimator(18, 1);
 
-			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833);
+			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833, true, true);
+			Animation downAnimation = new Animation("down", new int[] { 1, 2, 3, 13, 14, 15, 16, 17, 18, 10, 11, 12 }, 0.0416, true, true);
 
 			this.AddAnimation(idleAnimation);
+			this.AddAnimation(downAnimation);
 
 			this.SetAnimation("idle");
 		}
@@ -44,6 +48,9 @@ namespace UglyDuckling.Code.Entities
 		public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+			CheckBeat();
+
 			InitialMovementProcedure(gameTime);
 			FinalMovementProcedure(gameTime);
 
@@ -58,6 +65,24 @@ namespace UglyDuckling.Code.Entities
 				MoveTowardsTarget(gameTime);
             }
         }
+
+		private void CheckBeat()
+		{
+			bool isBeat = GameState.Instance.GetVar<bool>("is_beat");
+
+			if (isBeat)
+			{
+				Beat beat = GameState.Instance.GetVar<Beat>("current_beat");
+				//Trace.WriteLine(beat.Type);
+				if (beat.Type == 2)
+					SetAnimation("down", false, true);
+			}
+			else
+			{
+				SetAnimation("idle");
+
+			}
+		}
 
 		public void PerformInitialMovementProcedure(double delaySeconds)
 		{

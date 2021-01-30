@@ -210,8 +210,8 @@ namespace UglyDuckling
 		{
 			if (SceneLoaded)
 			{
-				this.EntityManager.Update(gameTime, Paused);
 				this.SpawnManager.Update(gameTime);
+				this.EntityManager.Update(gameTime, Paused);
 
 				this.Camera.Update(gameTime);
 			}
