@@ -73,8 +73,9 @@ namespace UglyDuckling.Code.Entities
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
+			float opacityFactor = GameState.Instance.GetVar<float>("distance_to_chicken_percent");
 			Rectangle rect = new Rectangle(Type * SIZE, 0, SIZE, SIZE);
-			spriteBatch.Draw(GetTexture(), new Rectangle((int)GetProjectedPosition().X, (int)GetProjectedPosition().Y, rect.Width, rect.Height), rect, Color.White, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
+			spriteBatch.Draw(GetTexture(), new Rectangle((int)GetProjectedPosition().X, (int)GetProjectedPosition().Y, rect.Width, rect.Height), rect, Color.White * opacityFactor, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
 		}
 	}
 }

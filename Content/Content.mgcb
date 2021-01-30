@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../../Users/Miha/Pictures/ugly_duckling/idle_animation_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../../../Users/Miha/Pictures/ugly_duckling/idle_animation_2.png;idle_animation_2.png
+
 #begin arrow_down.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -73,6 +85,30 @@
 /processorParam:TextureFormat=Color
 /build:arrows.png
 
+#begin banner_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:banner_1.png
+
+#begin banner_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:banner_2.png
+
 #begin bar_placeholder.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -97,7 +133,7 @@
 /processorParam:TextureFormat=Color
 /build:bg_test_1.jpg
 
-#begin idle_animation_2.png
+#begin footprint_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,7 +143,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:idle_animation_2.png
+/build:footprint_1.png
 
 #begin idle_animation_2.png
 /importer:TextureImporter

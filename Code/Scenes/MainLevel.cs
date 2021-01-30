@@ -14,10 +14,10 @@ namespace UglyDuckling.Code.Scenes
 
 		public MainLevel()
         {
-			this.ChickenController = new ChickenController(EntityManager, 4);
-
 			GameState.Instance.SetVar<int>("suspicion", 0);
-			GameState.Instance.SetVar<int>("max_suspicion", 100);
+			GameState.Instance.SetVar<int>("max_suspicion", 900);
+
+			this.ChickenController = new ChickenController(EntityManager, 4);
 		}
 
 		public override void LoadTextures()
@@ -31,6 +31,8 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("arrows", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			AddTexture("idle_animation_3", "player_idle");
+			AddTexture("banner_2", "banner");
+			AddTexture("footprint_1", "footprint");
 		}
 
 		public override void LoadSounds()
@@ -49,6 +51,7 @@ namespace UglyDuckling.Code.Scenes
 			Player player = new Player(NamedPositions.ChickenCoopDoor);
 			AddEntity(player);
 
+
 			AddEntity(new Background(new Vector2(0, 0)));
 			GameState.Instance.SetVar<int>("BEAT_Y", GetWindowHeight() - 150);
 
@@ -60,10 +63,14 @@ namespace UglyDuckling.Code.Scenes
 
 			Camera.FollowEntity(player);
 
+			GameState.Instance.SetVar<Player>("player", player);
+
 			GameState.Instance.SetVar<bool>("is_beat", false);
 			GameState.Instance.SetVar<Beat>("current_beat", null);
 			GameState.Instance.SetVar<List<Beat>>("beat_list", new List<Beat>());
 
+			GameState.Instance.SetVar<int>("max_distance_to_chicken", 600);
+			GameState.Instance.SetVar<float>("distance_to_chicken_percent", 1f);
 
 			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme");
 			beatManager.PlaySong();

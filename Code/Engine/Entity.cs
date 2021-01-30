@@ -40,6 +40,9 @@ namespace UglyDuckling
 
 		private bool Static;
 
+		private int OriginalWidth;
+		private int OriginalHeight;
+
 		private int Width;
 		private int Height;
 
@@ -110,8 +113,11 @@ namespace UglyDuckling
 
 					if (!this.ForceSize)
 					{
-						this.Width = this.Texture.Width;
-						this.Height = this.Texture.Height;
+						Width = this.Texture.Width;
+						Height = this.Texture.Height;
+
+						OriginalWidth = Width;
+						OriginalHeight = Height;
 					}
 
 
@@ -120,6 +126,9 @@ namespace UglyDuckling
 						this.Animator.SetTexture(this.Texture);
 						this.Width /= this.Animator.GetColumns();
 						this.Height /= this.Animator.GetRows();
+
+						OriginalWidth = Width;
+						OriginalHeight = Height;
 					}
 
 					this.OriginPoint = new Vector2(this.Width / 2, this.Height / 2);
@@ -232,6 +241,9 @@ namespace UglyDuckling
 		{
 			this.Width = width;
 			this.Height = height;
+
+			OriginalWidth = Width;
+			OriginalHeight = Height;
 		}
 
 		public int GetWidth()
@@ -267,6 +279,10 @@ namespace UglyDuckling
 		public void SetScale(float scale)
 		{
 			this.Scale = scale;
+
+			Width = (int)(OriginalWidth * scale);
+			Height = (int)(OriginalHeight * scale);
+			//SetBoundingRectangle(new Rectangle(0, 0, Width, Height));
 		}
 
 		public float GetScale()

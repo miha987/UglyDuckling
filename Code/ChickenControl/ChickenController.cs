@@ -40,6 +40,7 @@ namespace UglyDuckling.Code.ChickenControl
                 Chickens.Add(c);
                 EntityManager.AddEntity(c);
             }
+
             Reset();
         }
 
@@ -142,7 +143,7 @@ namespace UglyDuckling.Code.ChickenControl
 
         private void ToTheFinalProcedure()
         {
-            
+
             // start procedure to move chickens to coop.
             int startingDelay = 2;
             for (int i = 0; i < Chickens.Count; i++)
@@ -150,7 +151,36 @@ namespace UglyDuckling.Code.ChickenControl
                 Debug.WriteLine("Performing final procedure...");
                 Chickens[i].PerformFinalMovementProcedure(startingDelay + i * (0.5 + random.NextDouble()));
             }
+        }
 
+        private void CheckDistanceToPlayer()
+		{
+            if (!GameState.Instance.HasVar("player"))
+                return;
+
+            Player player = GameState.Instance.GetVar<Player>("player");
+
+            float minDist = 9999999999;
+
+            foreach (Chicken c in Chickens)
+			{
+                float distToPlayer = (c.GetProjectedPosition() - player.GetProjectedPosition()).Length();
+                
+                if (distToPlayer < minDist)
+                    minDist = distToPlayer;
+			}
+
+
+            int maxDistToChicken = GameState.Instance.GetVar<int>("max_distance_to_chicken");
+
+            if (minDist >= maxDistToChicken)
+			{
+                GameState.Instance.SetVar<float>("distance_to_chicken_percent", 0f);
+			} else
+			{
+                float distToChickenPercent = 1 - (minDist /(float)maxDistToChicken);
+                GameState.Instance.SetVar<float>("distance_to_chicken_percent", distToChickenPercent);
+			}
         }
 
         /// <summary>
@@ -183,6 +213,8 @@ namespace UglyDuckling.Code.ChickenControl
                     ToTheNextCheckpoint();
                 }
             }
+
+            CheckDistanceToPlayer();
         }
 
     }

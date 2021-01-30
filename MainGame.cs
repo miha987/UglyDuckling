@@ -72,7 +72,7 @@ namespace UglyDuckling
         {
             GraphicsDevice.Clear(new Color(163, 173, 113));
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             if (GameState.Instance.GetCurrentScene() != null)
             {

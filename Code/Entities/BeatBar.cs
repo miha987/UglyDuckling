@@ -10,18 +10,24 @@ namespace UglyDuckling.Code.Entities
 	{
 		public BeatBar(Vector2 position) : base(position)
 		{
-			SetTexture("bar");
+			SetTexture("footprint");
 			AddTag("bar");
 			//SetCheckCollisions(true);
 			SetCollidable(false);
 			SetStatic(true);
+			SetZ(95);
 		}
 
 		public override void Initialize()
 		{
 			base.Initialize();
 
+			int bannerHeight = GameState.Instance.GetVar<int>("banner_height");
+
 			SetOriginPoint(new Vector2(0, 0));
+			SetScale((float)bannerHeight/2 / (float)GetHeight()); // 4850 = BANNER WIDTH
+			SetPosition(new Vector2(GetProjectedPosition().X - GetWidth()/2, GameState.Instance.GetCurrentScene().GetWindowHeight() - (int)(GetHeight()*1.5)));
+			SetBoundingRectangle(new Rectangle(0, 0, GetWidth(), GetHeight()));
 		}
 
 		public void CheckKeyboard()
@@ -38,6 +44,8 @@ namespace UglyDuckling.Code.Entities
 			{
 				foreach (Beat beat in beatList)
 				{
+					Rectangle bRect = beat.GetRectangle();
+					Rectangle mRect = GetRectangle();
 					if (beat.Type == 0 && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						beat.RemoveBeat();

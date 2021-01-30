@@ -22,6 +22,9 @@ namespace UglyDuckling.Code.HUDs
 		{
 			base.Initialize();
 
+			RythmBanner rythmBanner = new RythmBanner(new Vector2(0, 0));
+			GameState.Instance.GetCurrentScene().AddEntity(rythmBanner);
+
 			Bar = new BeatBar(new Vector2(GameState.Instance.GetCurrentScene().GetWindowWidth() / 2, GameState.Instance.GetVar<int>("BEAT_Y")));
 			GameState.Instance.GetCurrentScene().AddEntity(Bar);
 			//Bar.LoadContent();

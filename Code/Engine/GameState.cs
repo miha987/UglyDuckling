@@ -69,6 +69,11 @@ namespace UglyDuckling
 			return (T)this.StateVariables[name].value;
 		}
 
+		public bool HasVar(String name)
+		{
+			return StateVariables.ContainsKey(name);
+		}
+
 		public void SetGraphics(GraphicsDeviceManager graphics)
 		{
 			this.Graphics = graphics;
