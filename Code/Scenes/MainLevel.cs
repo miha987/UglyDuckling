@@ -15,7 +15,7 @@ namespace UglyDuckling.Code.Scenes
 		public MainLevel()
         {
 			GameState.Instance.SetVar<int>("suspicion", 0);
-			GameState.Instance.SetVar<int>("max_suspicion", 900);
+			GameState.Instance.SetVar<int>("max_suspicion", 100);
 
 			this.ChickenController = new ChickenController(EntityManager, 5);
 		}
@@ -32,6 +32,7 @@ namespace UglyDuckling.Code.Scenes
 			//AddTexture("idle_animation_3", "player_idle");
 			AddTexture("banner_2", "banner");
 			AddTexture("footprint_1", "footprint");
+			AddTexture("suspicion_bar_1", "suspicion_bar");
 		}
 
 		public override void LoadSounds()
