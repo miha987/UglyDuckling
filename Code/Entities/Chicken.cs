@@ -22,6 +22,7 @@ namespace UglyDuckling.Code.Entities
 		private double OffTrackTime = 0;
 
 		private bool PerformingInitialMovementProcedure = false;
+		private bool PerformingFinalMovementProcedure = false;
 
 		public Chicken() : base(Vector2.Zero)
 		{
@@ -46,6 +47,7 @@ namespace UglyDuckling.Code.Entities
         {
             base.Update(gameTime);
 			InitialMovementProcedure(gameTime);
+			FinalMovementProcedure(gameTime);
 
 			if (freezeTime > 0)
             {
@@ -67,10 +69,22 @@ namespace UglyDuckling.Code.Entities
 			TargetPosition = NamedPositions.ChickenCoopDoor;
 		}
 
+		public void PerformFinalMovementProcedure(double delaySeconds)
+        {
+			freezeTime = delaySeconds;
+			PerformingFinalMovementProcedure = true;
+			TargetPosition = NamedPositions.ChickenCoopDoor;
+        }
+
 		public bool IsPerformingInitialMovementProcedure()
         {
 			return PerformingInitialMovementProcedure;
 		}
+
+		public bool IsPerformingFinalMovementProcedure()
+        {
+			return PerformingFinalMovementProcedure;
+        }
 
 		private void MoveTowardsTarget(GameTime gameTime)
         {
@@ -119,5 +133,21 @@ namespace UglyDuckling.Code.Entities
 
 			}
 		}
+
+		private void FinalMovementProcedure(GameTime gameTime)
+        {
+			if (PerformingFinalMovementProcedure)
+            {
+				bool nearDoor = Vector2.Distance(GetPosition(), NamedPositions.ChickenCoopDoor) < 2;
+				if (nearDoor)
+                {
+					TargetPosition = NamedPositions.ChickenCoopInside;
+                }
+				else if (Vector2.Distance(GetPosition(), TargetPosition) < 2 && !nearDoor)
+                {
+					// PerformingFinalMovementProcedure = false;
+                }
+			}
+        }
 	}
 }

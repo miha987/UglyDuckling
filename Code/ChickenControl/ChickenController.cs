@@ -62,11 +62,11 @@ namespace UglyDuckling.Code.ChickenControl
                 // sandbox
                 new Checkpoint(NamedPositions.Sandbox, 5),
                 // near the water
-                new Checkpoint(NamedPositions.Lake, 5),
+                //new Checkpoint(NamedPositions.Lake, 5),
                 // bottom-left corner grass
-                new Checkpoint(NamedPositions.Grass, 5),
+                //new Checkpoint(NamedPositions.Grass, 5),
                 // back to 1st point. Wait time doesnt matter as theres no "next" to go to.
-                new Checkpoint(NamedPositions.ChickenCoopOutside, 0),
+                new Checkpoint(NamedPositions.ChickenCoopOutside, 5),
             });
 
             CurrentCheckpointIndex = 0;
@@ -100,11 +100,35 @@ namespace UglyDuckling.Code.ChickenControl
             return false;
         }
 
+        private bool AnyChickenInFinalMovementProcedure()
+        {
+            foreach (Chicken c in Chickens)
+            {
+                if (c.IsPerformingFinalMovementProcedure())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void ToTheNextCheckpoint()
         {
             if (CurrentCheckpointIndex + 1 >= Checkpoints.Count)
             {
-                // There is no next checkpoint
+                if (!AnyChickenInFinalMovementProcedure())
+                {
+                    // There is no next checkpoint, start procedure to move chickens to coop.
+                    int delay = 2;
+                    for (int i = 0; i < Chickens.Count; i++)
+                    {
+                        Debug.WriteLine("Performing final procedure...");
+                        Chickens[i].PerformFinalMovementProcedure(delay + i * (1 + new Random().NextDouble()));
+                    }
+                }
+
+                // Also don't do anything else, there's no more checkpoints.
                 return;
             }
             
