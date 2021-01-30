@@ -14,8 +14,8 @@ namespace UglyDuckling.Code.Entities
 
 		public Player(Vector2 position) : base(position)
 		{
-			SetTexture("brown_duck");
-
+			SetTexture("chicken");
+			SetZ(10);
 			SetCheckCollisions(true);
 			SetCollidable(true);
 
@@ -135,14 +135,11 @@ namespace UglyDuckling.Code.Entities
 		private void CheckSeedPickups(GameTime gameTime)
 		{
 			List<Entity> seeds = GetMyCollisionsWithTag("seed");
-			if (IsAnimationActive("down"))
+			foreach (Seed s in seeds)
 			{
-				foreach (Seed s in seeds)
-				{
-					int seedsCount = GameState.Instance.GetVar<int>("seeds");
-					GameState.Instance.SetVar<int>("seeds", seedsCount + 1);
-					s.Remove();
-				}
+				int seedsCount = GameState.Instance.GetVar<int>("seeds");
+				GameState.Instance.SetVar<int>("seeds", seedsCount + 1);
+				s.Remove();
 			}
 		}
 	}

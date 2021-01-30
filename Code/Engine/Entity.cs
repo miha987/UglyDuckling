@@ -473,7 +473,8 @@ namespace UglyDuckling
 
 			if (this.Animator.IsEnabled)
             {
-				this.Animator.Draw(spriteBatch, dstRect, this.TintColor, this.RotationAngle, this.OriginPoint, this.Scale, this.horizontalFlip);
+				bool doFlip = (IsAnimationActive("left") || IsAnimationActive("right")) ? false : this.horizontalFlip;
+				this.Animator.Draw(spriteBatch, dstRect, this.TintColor, this.RotationAngle, this.OriginPoint, this.Scale, doFlip);
 			}
 			else
             {

@@ -14,18 +14,15 @@ namespace UglyDuckling
         public MainGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-			//_graphics.PreferredBackBufferWidth = 1200; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-			//_graphics.PreferredBackBufferHeight = 675; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-
-			int maxBufferWidth = 1920; 
-            int maxBufferHeight = 1080;
+            int maxBufferWidth = 1200; //1920; 
+            int maxBufferHeight = 675; //1080;
 
             _graphics.PreferredBackBufferWidth = Math.Min(maxBufferWidth, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
             _graphics.PreferredBackBufferHeight = Math.Min(maxBufferHeight, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);

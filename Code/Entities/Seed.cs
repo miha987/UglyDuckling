@@ -10,6 +10,7 @@ namespace UglyDuckling.Code.Entities
 		public Seed(Vector2 position) : base(position)
 		{
 			SetTexture("seed1");
+			SetZ(9);
 
 			AddTag("seed");
 			// SetCheckCollisions(true);
