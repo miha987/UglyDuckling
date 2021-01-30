@@ -26,7 +26,7 @@ namespace UglyDuckling.Code.Entities
 
 		public Chicken() : base(Vector2.Zero)
 		{
-			SetTexture("chicken");
+			SetTexture("brown_duck");
 			//Rotate(MathHelper.Pi);
 
 			InitializeAnimations();
@@ -34,13 +34,19 @@ namespace UglyDuckling.Code.Entities
 
 		public void InitializeAnimations()
 		{
-			EnableAnimator(18, 1);
+			EnableAnimator(6, 10);
 
-			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833, true, true);
-			Animation downAnimation = new Animation("down", new int[] { 1, 2, 3, 13, 14, 15, 16, 17, 18, 10, 11, 12 }, 0.0416, true, true);
+			Animation blobAnimation = new Animation("blob", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.055556, true, true);
+			Animation idleAnimation = new Animation("idle", new int[] { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 }, 0.0833, true, true);
+			Animation leftAnimation = new Animation("left", new int[] { 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 }, 0.055556, true, true);
+			Animation rightAnimation = new Animation("right", new int[] { 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 }, 0.055556, true, true);
+			Animation upAnimation = new Animation("up", new int[] { 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60 }, 0.055556, true, true);
 
+			this.AddAnimation(blobAnimation);
 			this.AddAnimation(idleAnimation);
-			this.AddAnimation(downAnimation);
+			this.AddAnimation(leftAnimation);
+			this.AddAnimation(rightAnimation);
+			this.AddAnimation(upAnimation);
 
 			this.SetAnimation("idle");
 		}
@@ -74,8 +80,14 @@ namespace UglyDuckling.Code.Entities
 			{
 				Beat beat = GameState.Instance.GetVar<Beat>("current_beat");
 				//Trace.WriteLine(beat.Type);
+				if (beat.Type == 0)
+					SetAnimation("up", false, true);
+				if (beat.Type == 1)
+					SetAnimation("right", false, true);
 				if (beat.Type == 2)
-					SetAnimation("down", false, true);
+					SetAnimation("blob", false, true);
+				if (beat.Type == 3)
+					SetAnimation("left", false, true);
 			}
 			else
 			{
