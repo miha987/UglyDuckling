@@ -13,12 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin AQUAGON_-_Ugly_Duckling_OST_1_Wip_4.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:AQUAGON_-_Ugly_Duckling_OST_1_Wip_4.mp3
-
 #begin arrow_down.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -126,6 +120,24 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:idle_animation_1.png
+
+#begin song1_wip3.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:song1_wip3.mp3
+
+#begin song1_wip4.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:song1_wip4.mp3
+
+#begin song2_wip1.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:song2_wip1.mp3
 
 #begin TestImage.png
 /importer:TextureImporter

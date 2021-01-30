@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using UglyDuckling.Code.Scenes;
 
 namespace UglyDuckling
@@ -13,7 +14,7 @@ namespace UglyDuckling
         public MainGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.IsFullScreen = false;
+            _graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -22,9 +23,12 @@ namespace UglyDuckling
         {
             //_graphics.PreferredBackBufferWidth = 1200; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             //_graphics.PreferredBackBufferHeight = 675; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            
-            _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+            int maxBufferWidth = 1920; 
+            int maxBufferHeight = 1080;
+
+            _graphics.PreferredBackBufferWidth = Math.Min(maxBufferWidth, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
+            _graphics.PreferredBackBufferHeight = Math.Min(maxBufferHeight, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             
             _graphics.ApplyChanges();
 
@@ -33,7 +37,7 @@ namespace UglyDuckling
             GameState.Instance.SetGraphics(this._graphics);
             GameState.Instance.SetContent(this.Content);
 
-            GameState.Instance.SetScene(new MainLevel());
+            GameState.Instance.SetScene(new MainMenu());
 
             this.IsFixedTimeStep = true;
             this._graphics.SynchronizeWithVerticalRetrace = false;

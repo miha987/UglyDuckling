@@ -36,9 +36,9 @@ namespace UglyDuckling.Code.Mechanics
 			BeatStep = beatStep;
 
 			TimePassedOffset = 0;
-			
-			//LastBeatTime = -beatStep;
-			LastBeatTime = 0;
+
+			LastBeatTime = -beatStep;
+			//LastBeatTime = 0;
 
 			BeatRandom = new Random();
 
