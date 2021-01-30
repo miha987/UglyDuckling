@@ -12,6 +12,7 @@ namespace UglyDuckling.Code.ChickenControl
     /// </summary>
     class ChickenController
     {
+        private readonly Random random = new Random();
         /// <summary>
         /// Reference to the EntityManager chickens will be added to
         /// </summary>
@@ -47,28 +48,8 @@ namespace UglyDuckling.Code.ChickenControl
         /// </summary>
         private void Reset()
         {
-            int initialDelay = 3;
-            for (int i = 0; i < Chickens.Count; i++)
-            {
-                Chickens[i].PerformInitialMovementProcedure(initialDelay + i * (1 + new Random().NextDouble()));
-            }
-
-            CheckpointGenerator.Generate();
-
-            // prepare new points
-            Checkpoints.AddRange(new Checkpoint[] {
-                // in front of coop
-                new Checkpoint(NamedPositions.ChickenCoopOutside, 5),
-                // sandbox
-                new Checkpoint(NamedPositions.Sandbox, 5),
-                // near the water
-                //new Checkpoint(NamedPositions.Lake, 5),
-                // bottom-left corner grass
-                //new Checkpoint(NamedPositions.Grass, 5),
-                // back to 1st point. Wait time doesnt matter as theres no "next" to go to.
-                new Checkpoint(NamedPositions.ChickenCoopOutside, 5),
-            });
-
+            ToTheInitialProcedure();
+            Checkpoints.AddRange(CheckpointGenerator.Generate());
             CurrentCheckpointIndex = 0;
         }
 
@@ -80,6 +61,18 @@ namespace UglyDuckling.Code.ChickenControl
             {
                 double dist = Vector2.Distance(c.GetPosition(), currentCheckpoint.Position);
                 if (dist > CheckpointGenerator.MAX_ERROR_DIST)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool AllChickensNotMoving()
+        {
+            foreach (Chicken c in Chickens)
+            {
+                if (c.IsMoving())
                 {
                     return false;
                 }
@@ -119,16 +112,9 @@ namespace UglyDuckling.Code.ChickenControl
             {
                 if (!AnyChickenInFinalMovementProcedure())
                 {
-                    // There is no next checkpoint, start procedure to move chickens to coop.
-                    int delay = 2;
-                    for (int i = 0; i < Chickens.Count; i++)
-                    {
-                        Debug.WriteLine("Performing final procedure...");
-                        Chickens[i].PerformFinalMovementProcedure(delay + i * (1 + new Random().NextDouble()));
-                    }
+                    ToTheFinalProcedure();
                 }
-
-                // Also don't do anything else, there's no more checkpoints.
+                // There is no next checkpoint, don't do anything else.
                 return;
             }
             
@@ -142,6 +128,29 @@ namespace UglyDuckling.Code.ChickenControl
             {
                 c.TargetPosition = CheckpointGenerator.RandomOffset(Checkpoints[CurrentCheckpointIndex].Position);
             }
+        }
+
+        private void ToTheInitialProcedure()
+        {
+            // start procedure to move chickens out of coop.
+            int startingDelay = 1;
+            for (int i = 0; i < Chickens.Count; i++)
+            {
+                Chickens[i].PerformInitialMovementProcedure(startingDelay + i * (0.5 + random.NextDouble()));
+            }
+        }
+
+        private void ToTheFinalProcedure()
+        {
+            
+            // start procedure to move chickens to coop.
+            int startingDelay = 2;
+            for (int i = 0; i < Chickens.Count; i++)
+            {
+                Debug.WriteLine("Performing final procedure...");
+                Chickens[i].PerformFinalMovementProcedure(startingDelay + i * (0.5 + random.NextDouble()));
+            }
+
         }
 
         /// <summary>
@@ -164,7 +173,7 @@ namespace UglyDuckling.Code.ChickenControl
             } 
             else
             {
-                if (AllChickensOnCheckpoint())
+                if (AllChickensOnCheckpoint() && AllChickensNotMoving())
                 {
                     TimeElapsedAtCurrentCheckpoint += gameTime.ElapsedGameTime.TotalSeconds;
                 }

@@ -85,6 +85,12 @@ namespace UglyDuckling.Code.Entities
         {
 			return PerformingFinalMovementProcedure;
         }
+		
+		public bool IsMoving()
+		{
+			double errorDist = Vector2.Distance(GetPosition(), TargetPosition);
+			return errorDist >= 2;
+		}
 
 		private void MoveTowardsTarget(GameTime gameTime)
         {
