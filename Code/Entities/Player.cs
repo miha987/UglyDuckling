@@ -16,7 +16,23 @@ namespace UglyDuckling.Code.Entities
 		{
 			SetTexture("chicken");
 
+			SetCheckCollisions(true);
+			SetCollidable(true);
+
 			InitializeAnimations();
+		}
+
+		public override void LoadContent()
+		{
+			base.LoadContent();
+
+			// A bit smaller bounding rectangle than the actual sprite...
+			// TODO this is kinda weird
+			int x = (int)(2f / 10f * GetWidth());
+			int y = (int)(2f / 10f * GetHeight());
+			int w = (int)(4f / 10f * GetWidth());
+			int h = (int)(4f / 10f * GetHeight());
+			SetBoundingRectangle(new Rectangle(x, y, w, h));
 		}
 
 		public void InitializeAnimations()
@@ -33,16 +49,23 @@ namespace UglyDuckling.Code.Entities
 		}
 
 		public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
+		{
+			base.Update(gameTime);
 			//Debug.WriteLine("Player position: " + GetPosition());
 
 			CheckKeyboard(gameTime);
-        }
+		}
+
+		public override void PostUpdate(GameTime gameTime)
+		{
+			base.PostUpdate(gameTime);
+
+			CheckSeedPickups(gameTime);
+		}
 
 		//
 
-		public void CheckKeyboard(GameTime gameTime)
+		private void CheckKeyboard(GameTime gameTime)
 		{
 			KeyboardState keyState = Keyboard.GetState();
 			KeyboardState prevKeyState = GameState.Instance.GetPrevKeyboardState();
@@ -79,13 +102,27 @@ namespace UglyDuckling.Code.Entities
 			}
 
 			if (movement.X != 0 && movement.Y != 0)
-            {
+			{
 				movement.Normalize();
 			}
-			
+
 			movement *= MOVE_SPEED;
 			movement.Round();
 			this.Move(movement);
+		}
+
+		private void CheckSeedPickups(GameTime gameTime)
+		{
+			List<Entity> seeds = GetMyCollisionsWithTag("seed");
+			if (IsAnimationActive("down"))
+			{
+				foreach (Seed s in seeds)
+				{
+					int seedsCount = GameState.Instance.GetVar<int>("seeds");
+					GameState.Instance.SetVar<int>("seeds", seedsCount + 1);
+					s.Remove();
+				}
+			}
 		}
 	}
 }

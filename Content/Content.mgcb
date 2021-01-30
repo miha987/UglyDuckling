@@ -145,18 +145,6 @@
 /processorParam:TextureFormat=Color
 /build:idle_animation_2.png
 
-#begin idle_animation_2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:idle_animation_2.png
-
 #begin idle_animation_3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -168,6 +156,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:idle_animation_3.png
+
+#begin seed1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:seed1.png
 
 #begin song1_wip3.mp3
 /importer:Mp3Importer

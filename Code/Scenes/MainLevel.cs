@@ -11,13 +11,15 @@ namespace UglyDuckling.Code.Scenes
 	class MainLevel : Scene
 	{
 		private ChickenController ChickenController;
+		private SeedGenerator SeedGenerator;
 
 		public MainLevel()
-        {
+		{
 			GameState.Instance.SetVar<int>("suspicion", 0);
-			GameState.Instance.SetVar<int>("max_suspicion", 100);
+			GameState.Instance.SetVar<int>("max_suspicion", 99999);
 
 			this.ChickenController = new ChickenController(EntityManager, 5);
+			this.SeedGenerator = new SeedGenerator(EntityManager);
 		}
 
 		public override void LoadTextures()
@@ -33,6 +35,7 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("banner_2", "banner");
 			AddTexture("footprint_1", "footprint");
 			AddTexture("suspicion_bar_1", "suspicion_bar");
+			AddTexture("seed1", "seed1");
 		}
 
 		public override void LoadSounds()
@@ -51,6 +54,7 @@ namespace UglyDuckling.Code.Scenes
 			Player player = new Player(NamedPositions.ChickenCoopDoor);
 			AddEntity(player);
 
+			SeedGenerator.GenerateSeeds();
 
 			AddEntity(new Background(new Vector2(0, 0)));
 			GameState.Instance.SetVar<int>("BEAT_Y", GetWindowHeight() - 150);
@@ -64,6 +68,7 @@ namespace UglyDuckling.Code.Scenes
 			Camera.FollowEntity(player);
 
 			GameState.Instance.SetVar<Player>("player", player);
+			GameState.Instance.SetVar<int>("seeds", 0);
 
 			GameState.Instance.SetVar<bool>("is_beat", false);
 			GameState.Instance.SetVar<Beat>("current_beat", null);

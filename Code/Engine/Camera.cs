@@ -49,7 +49,7 @@ namespace UglyDuckling
 			this.Height = height;
 
 			double marginX = 0.4;
-			double marginY = 0.3;
+			double marginY = 0.4;
 			int x = (int)(this.Width * marginX);
 			int y = (int)(this.Height * marginY);
 			int w = (int)(this.Width * (1 - marginX * 2));
