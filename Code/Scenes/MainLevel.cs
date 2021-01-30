@@ -17,7 +17,7 @@ namespace UglyDuckling.Code.Scenes
 			GameState.Instance.SetVar<int>("suspicion", 0);
 			GameState.Instance.SetVar<int>("max_suspicion", 900);
 
-			this.ChickenController = new ChickenController(EntityManager, 4);
+			this.ChickenController = new ChickenController(EntityManager, 5);
 		}
 
 		public override void LoadTextures()
@@ -25,9 +25,7 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("TestImage", "test");
-			//AddTexture("walk1_test", "walk1_test");
 			AddTexture("bg_test_1", "background");
-			AddTexture("walk1_test", "walk1_test");
 			AddTexture("arrows", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			AddTexture("idle_animation_3", "player_idle");

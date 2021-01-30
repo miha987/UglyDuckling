@@ -134,10 +134,10 @@ namespace UglyDuckling.Code.ChickenControl
         private void ToTheInitialProcedure()
         {
             // start procedure to move chickens out of coop.
-            int startingDelay = 1;
+            int startingDelay = 3;
             for (int i = 0; i < Chickens.Count; i++)
             {
-                Chickens[i].PerformInitialMovementProcedure(startingDelay + i * (0.5 + random.NextDouble()));
+                Chickens[i].PerformInitialMovementProcedure(startingDelay + i * (random.NextDouble() / 2));
             }
         }
 
