@@ -78,6 +78,13 @@ namespace UglyDuckling
 
 		public void Update(GameTime gameTime)
 		{
+			if (this.FollowingEntity == null)
+			{
+				this.X = 0;
+				this.Y = 0;
+				return;
+			}
+
 			if (this.FollowMode == "center")
 			{
 				if (this.FollowingEntity != null)

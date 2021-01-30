@@ -34,7 +34,9 @@ namespace UglyDuckling.Code.Scenes
 		{
 			base.LoadSounds();
 
-			AddSong("AQUAGON_-_Ugly_Duckling_OST_1_Wip_4", "main_theme");
+			AddSong("song1_wip4", "main_theme");
+			//AddSong("song1_wip3", "main_theme");
+			//AddSong("song2_wip1", "main_theme");
 		}
 
 		public override void Initialize()
