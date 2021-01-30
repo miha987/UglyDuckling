@@ -12,7 +12,8 @@ namespace UglyDuckling.Code.Entities
 		{
 			SetTexture("bar");
 			AddTag("bar");
-			SetCheckCollisions(true);
+			//SetCheckCollisions(true);
+			SetCollidable(false);
 			SetStatic(true);
 		}
 
