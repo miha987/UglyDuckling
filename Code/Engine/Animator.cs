@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace UglyDuckling
@@ -125,7 +126,7 @@ namespace UglyDuckling
 			int SpriteHeight = this.Texture.Height / this.Rows;
 
 			int spriteX = ((currentFrame - 1) % this.Columns) * SpriteWidth;
-			int spriteY = ((currentFrame - 1) / this.Columns) * SpriteHeight;
+			int spriteY = (int)((currentFrame - 1) / this.Columns) * SpriteHeight;
 
 			Rectangle sourceRect = new Rectangle(spriteX, spriteY, SpriteWidth, SpriteHeight);
 

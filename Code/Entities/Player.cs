@@ -20,9 +20,9 @@ namespace UglyDuckling.Code.Entities
 
 		public void InitializeAnimations()
 		{
-			EnableAnimator(6, 1);
+			EnableAnimator(12, 1);
 
-			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6 }, 0.0833);
+			Animation idleAnimation = new Animation("idle", new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 0.0833);
 
 			this.AddAnimation(idleAnimation);
 

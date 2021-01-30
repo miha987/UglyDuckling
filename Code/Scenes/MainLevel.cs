@@ -27,7 +27,7 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("walk1_test", "walk1_test");
 			AddTexture("arrows", "arrows");
 			AddTexture("bar_placeholder", "bar");
-			AddTexture("idle_animation_1", "player_idle");
+			AddTexture("idle_animation_3", "player_idle");
 		}
 
 		public override void LoadSounds()
