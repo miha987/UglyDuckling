@@ -59,7 +59,7 @@ namespace UglyDuckling.Code.Entities
             }
         }
 
-		public void PerformInitialMovementProcedure(int delaySeconds)
+		public void PerformInitialMovementProcedure(double delaySeconds)
 		{
 			freezeTime = delaySeconds;
 			PerformingInitialMovementProcedure = true;
@@ -109,8 +109,9 @@ namespace UglyDuckling.Code.Entities
 				if (nearDoor)
 				{
 					// chicken is at the door, update target to outside chicken coop
-					TargetPosition = NamedPositions.ChickenCoopOutside;
-				} else if (Vector2.Distance(GetPosition(), TargetPosition) < 2 && !nearDoor)
+					TargetPosition = CheckpointGenerator.RandomOffset(NamedPositions.ChickenCoopOutside);
+				} 
+				else if (Vector2.Distance(GetPosition(), TargetPosition) < 2 && !nearDoor)
                 {
 					// Initial movement procedure done.
 					PerformingInitialMovementProcedure = false;
