@@ -13,7 +13,7 @@ namespace UglyDuckling.Code.Entities
 
 		private Random random = new Random();
 
-		public float MoveSpeed { get; set; } = 4f; // default
+		public float MoveSpeed { get; set; } = 3f; // default
 		public Vector2 TargetPosition { get; set; }
 
 		private Vector2? OffTrackDirection = null;
@@ -72,6 +72,8 @@ namespace UglyDuckling.Code.Entities
 				float dy = (float)(random.NextDouble() * (OFF_TRACK_DEVIATION * 2) - OFF_TRACK_DEVIATION);
 				OffTrackDirection = new Vector2(dx, dy);
 			}
+
+			this.horizontalFlip = moveTowards.X > 0;
 
 			moveTowards *= MoveSpeed;
 			Move(moveTowards);
