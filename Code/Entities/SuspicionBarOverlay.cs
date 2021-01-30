@@ -28,21 +28,14 @@ namespace UglyDuckling.Code.Entities
 
 			SetOriginPoint(new Vector2(0, 0));
 
-			//int bannerHeight = GameState.Instance.GetVar<int>("banner_height");
 			SetPosition(new Vector2(SuspicionBar.GetProjectedPosition().X + SuspicionBar.GetWidth() * 0.05f, SuspicionBar.GetProjectedPosition().Y + SuspicionBar.GetHeight() * 0.61f));
 		}
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			//base.Draw(spriteBatch);
 
 			int suspicion = GameState.Instance.GetVar<int>("suspicion");
 			int maxSuspicion = GameState.Instance.GetVar<int>("max_suspicion");
-
-
-			//Rectangle drawRect = new Rectangle((int)GetProjectedPosition().X, (int)GetProjectedPosition().Y, GetWidth(), GetHeight());
-			//spriteBatch.Draw(GetTexture(), drawRect, drawRect, Color.Cyan, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
-
 
 			double suspicionWidth = (suspicion * SuspicionBar.GetWidth() * 0.9f) / maxSuspicion;
 			//int suspicionY = (int)GetProjectedPosition().Y + GetHeight() - (int)suspicionHeight;

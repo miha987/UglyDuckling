@@ -8,6 +8,7 @@ namespace UglyDuckling.Code.Entities
 {
 	class SuspicionBar : Entity
 	{
+		private SuspicionBarBackground Background;
 		private SuspicionBarOverlay Overlay;
 
 		public SuspicionBar(Vector2 position) : base(position)
@@ -17,7 +18,7 @@ namespace UglyDuckling.Code.Entities
 			SetCollidable(false);
 			SetStatic(true);
 			SetTexture("suspicion_bar");
-			SetZ(100);
+			SetZ(110);
 		}
 
 		public override void Initialize()
@@ -32,6 +33,10 @@ namespace UglyDuckling.Code.Entities
 			SetPosition(new Vector2(50, GameState.Instance.GetCurrentScene().GetWindowHeight() - bannerHeight - GetHeight() - 50));
 
 
+			Background = new SuspicionBarBackground(this);
+			Background.LoadContent();
+			Background.Initialize();
+
 			Overlay = new SuspicionBarOverlay(this);
 			Overlay.LoadContent();
 			Overlay.Initialize();
@@ -39,22 +44,10 @@ namespace UglyDuckling.Code.Entities
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			base.Draw(spriteBatch);
-
+			Background.Draw(spriteBatch);
 			Overlay.Draw(spriteBatch);
-
-			//int suspicion = GameState.Instance.GetVar<int>("suspicion");
-			//int maxSuspicion = GameState.Instance.GetVar<int>("max_suspicion");
-
-
-			//Rectangle drawRect = new Rectangle((int)GetProjectedPosition().X, (int)GetProjectedPosition().Y, GetWidth(), GetHeight());
-			//spriteBatch.Draw(GetTexture(), drawRect, drawRect, Color.Cyan, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
-
-
-			//double suspicionHeight = (suspicion * GetHeight()) / maxSuspicion;
-			//int suspicionY = (int)GetProjectedPosition().Y + GetHeight() - (int)suspicionHeight;
-			//Rectangle drawSuspicionRect = new Rectangle((int)GetProjectedPosition().X, suspicionY, GetWidth(), (int)suspicionHeight);
-			//spriteBatch.Draw(GetTexture(), drawSuspicionRect, drawSuspicionRect, Color.Red, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
+			
+			base.Draw(spriteBatch);
 		}
 	}
 }

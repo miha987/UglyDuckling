@@ -7,22 +7,23 @@ using UglyDuckling.Code.Entities;
 
 namespace UglyDuckling.Code.Scenes
 {
-	class GameOverScene : Scene
+	class WinScene : Scene
 	{
 		public override void LoadTextures()
 		{
 			base.LoadTextures();
 
-			AddTexture("game_over_screen", "game_over_screen");
+			AddTexture("bg_test_1", "background");
 		}
 
 		public override void Initialize()
 		{
 			base.Initialize();
 
+			Background background = new Background(new Vector2(1000, 1000));
 
-			GameOverScreen background = new GameOverScreen(new Vector2(0, 0));
-			AddEntity(background);
+			//GameOverScreen background = new GameOverScreen(new Vector2(0, 0));
+			//AddEntity(background);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -37,12 +38,6 @@ namespace UglyDuckling.Code.Scenes
 
 			if (keyState.IsKeyDown(Keys.Enter) && !prevKeyState.IsKeyDown(Keys.Enter))
 				GameState.Instance.SetScene(new MainMenu());
-
-			//if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-			//	GameState.Instance.GetGameReference().Exit();
-
-			//if (Keyboard.GetState().GetPressedKeys().Length > 0)
-			//	GameState.Instance.SetScene(new MainMenu());
-		}
+		} 
 	}
 }

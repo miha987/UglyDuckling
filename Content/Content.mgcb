@@ -145,6 +145,18 @@
 /processorParam:TextureFormat=Color
 /build:footprint_1.png
 
+#begin game_over_screen.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:game_over_screen.jpg
+
 #begin idle_animation_2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -198,6 +210,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:suspicion_bar_1.png
+
+#begin suspicion_bar_1_transparent.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:suspicion_bar_1_transparent.png
 
 #begin temporary_chicken.png
 /importer:TextureImporter

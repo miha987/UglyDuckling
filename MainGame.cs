@@ -21,10 +21,10 @@ namespace UglyDuckling
 
         protected override void Initialize()
         {
-            //_graphics.PreferredBackBufferWidth = 1200; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            //_graphics.PreferredBackBufferHeight = 675; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+			//_graphics.PreferredBackBufferWidth = 1200; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+			//_graphics.PreferredBackBufferHeight = 675; // GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-            int maxBufferWidth = 1920; 
+			int maxBufferWidth = 1920; 
             int maxBufferHeight = 1080;
 
             _graphics.PreferredBackBufferWidth = Math.Min(maxBufferWidth, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
