@@ -14,7 +14,7 @@ namespace UglyDuckling.Code.Entities
 
 		public Player(Vector2 position) : base(position)
 		{
-			SetTexture("chicken");
+			SetTexture("brown_duck");
 			SetZ(10);
 			SetCheckCollisions(true);
 			SetCollidable(true);
