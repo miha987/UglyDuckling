@@ -43,7 +43,7 @@ namespace UglyDuckling.Code.Scenes
 		{
 			base.Initialize();
 
-			Player player = new Player(new Vector2(-444, -344));
+			Player player = new Player(NamedPositions.ChickenCoopDoor);
 			AddEntity(player);
 
 			AddEntity(new Background(new Vector2(0, 0)));

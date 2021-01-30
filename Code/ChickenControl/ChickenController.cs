@@ -16,6 +16,7 @@ namespace UglyDuckling.Code.ChickenControl
         /// Reference to the EntityManager chickens will be added to
         /// </summary>
         private readonly EntityManager EntityManager;
+        private readonly CheckpointGenerator CheckpointGenerator;
 
         private double TimeElapsedTotal = 0;
         private double TimeElapsedAtCurrentCheckpoint = 0;
@@ -30,6 +31,7 @@ namespace UglyDuckling.Code.ChickenControl
         public ChickenController(EntityManager entityManager, int chickenCount)
         {
             this.EntityManager = entityManager;
+            this.CheckpointGenerator = new CheckpointGenerator();
 
             for (int i = 0; i < chickenCount; i++)
             {
@@ -45,29 +47,36 @@ namespace UglyDuckling.Code.ChickenControl
         /// </summary>
         private void Reset()
         {
+            for (int i = 0; i < Chickens.Count; i++)
+            {
+                Chickens[i].PerformInitialMovementProcedure(i * 2);
+            }
+
+            CheckpointGenerator.Generate();
+
             // prepare new points
             Checkpoints.AddRange(new Checkpoint[] {
                 // in front of coop
-                new Checkpoint(new Vector2(-320, -110), 5),
+                new Checkpoint(NamedPositions.ChickenCoopOutside, 5),
                 // sandbox
-                new Checkpoint(new Vector2(+270, -270), 5),
+                new Checkpoint(NamedPositions.Sandbox, 5),
                 // near the water
-                new Checkpoint(new Vector2(140, +340), 5),
+                new Checkpoint(NamedPositions.Lake, 5),
                 // bottom-left corner grass
-                new Checkpoint(new Vector2(-510, +360), 5),
+                new Checkpoint(NamedPositions.Grass, 5),
                 // back to 1st point. Wait time doesnt matter as theres no "next" to go to.
-                new Checkpoint(new Vector2(-320, -110), 0),
+                new Checkpoint(NamedPositions.ChickenCoopOutside, 0),
             });
 
             // reset chicken positions by teleporting them to 1st point
-            foreach (Chicken c in Chickens)
+            /*foreach (Chicken c in Chickens)
             {
                 c.SetPosition(Checkpoints[0].Position);
-            }
+            }*/
 
             // index to -1 as ToTheNextCheckpoint immediately increments it
-            CurrentCheckpointIndex = -1;
-            ToTheNextCheckpoint();
+            CurrentCheckpointIndex = 0;
+            // ToTheNextCheckpoint();
         }
 
         private bool AllChickensOnCheckpoint()
@@ -83,6 +92,19 @@ namespace UglyDuckling.Code.ChickenControl
                 }
             }
             return true;
+        }
+
+        private bool AnyChickenInInitialMovementProcedure()
+        {
+            foreach (Chicken c in Chickens)
+            {
+                if (c.IsPerformingInitialMovementProcedure())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void ToTheNextCheckpoint()
@@ -128,14 +150,21 @@ namespace UglyDuckling.Code.ChickenControl
 
             TimeElapsedTotal += gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (AllChickensOnCheckpoint())
+            if (AnyChickenInInitialMovementProcedure())
             {
-                TimeElapsedAtCurrentCheckpoint += gameTime.ElapsedGameTime.TotalSeconds;
-            }
+                // Debug.WriteLine("Initial procedure...");
+            } 
+            else
+            {
+                if (AllChickensOnCheckpoint())
+                {
+                    TimeElapsedAtCurrentCheckpoint += gameTime.ElapsedGameTime.TotalSeconds;
+                }
 
-            if (TimeElapsedAtCurrentCheckpoint > Checkpoints[CurrentCheckpointIndex].WaitTime)
-            {
-                ToTheNextCheckpoint();
+                if (TimeElapsedAtCurrentCheckpoint > Checkpoints[CurrentCheckpointIndex].WaitTime)
+                {
+                    ToTheNextCheckpoint();
+                }
             }
         }
 

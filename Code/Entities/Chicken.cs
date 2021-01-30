@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
+using UglyDuckling.Code.ChickenControl;
 
 namespace UglyDuckling.Code.Entities
 {
@@ -14,10 +15,13 @@ namespace UglyDuckling.Code.Entities
 		private Random random = new Random();
 
 		public float MoveSpeed { get; set; } = 3f; // default
+		private double freezeTime = 0; // in seconds
 		public Vector2 TargetPosition { get; set; }
 
 		private Vector2? OffTrackDirection = null;
 		private double OffTrackTime = 0;
+
+		private bool PerformingInitialMovementProcedure = false;
 
 		public Chicken() : base(Vector2.Zero)
 		{
@@ -41,14 +45,32 @@ namespace UglyDuckling.Code.Entities
 		public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+			InitialMovementProcedure(gameTime);
 
-			// TODO: move towards target if not within error distance
+			if (freezeTime > 0)
+            {
+				freezeTime -= gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
 			double errorDist = Vector2.Distance(GetPosition(), TargetPosition);
-			if (errorDist > 2)
+			if (errorDist > 2 && freezeTime <= 0)
             {
 				MoveTowardsTarget(gameTime);
             }
         }
+
+		public void PerformInitialMovementProcedure(int delaySeconds)
+		{
+			freezeTime = delaySeconds;
+			PerformingInitialMovementProcedure = true;
+			SetPosition(NamedPositions.ChickenCoopInside);
+			TargetPosition = NamedPositions.ChickenCoopDoor;
+		}
+
+		public bool IsPerformingInitialMovementProcedure()
+        {
+			return PerformingInitialMovementProcedure;
+		}
 
 		private void MoveTowardsTarget(GameTime gameTime)
         {
@@ -77,6 +99,24 @@ namespace UglyDuckling.Code.Entities
 
 			moveTowards *= MoveSpeed;
 			Move(moveTowards);
+		}
+
+		private void InitialMovementProcedure(GameTime gameTime)
+        {
+			if (PerformingInitialMovementProcedure)
+            {
+				bool nearDoor = Vector2.Distance(GetPosition(), NamedPositions.ChickenCoopDoor) < 2;
+				if (nearDoor)
+				{
+					// chicken is at the door, update target to outside chicken coop
+					TargetPosition = NamedPositions.ChickenCoopOutside;
+				} else if (Vector2.Distance(GetPosition(), TargetPosition) < 2 && !nearDoor)
+                {
+					// Initial movement procedure done.
+					PerformingInitialMovementProcedure = false;
+                }
+
+			}
 		}
 	}
 }
