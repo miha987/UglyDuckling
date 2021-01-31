@@ -26,7 +26,7 @@ namespace UglyDuckling.Code.Entities
 
 		public Chicken() : base(Vector2.Zero)
 		{
-			SetTexture("brown_duck");
+			SetTexture("yellow_duck");
 			//Rotate(MathHelper.Pi);
 
 			InitializeAnimations();
