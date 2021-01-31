@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,8 @@ namespace UglyDuckling.Code.Entities
 		public override void LoadContent()
 		{
 			base.LoadContent();
-
-			// A bit smaller bounding rectangle than the actual sprite...
-			// TODO this is kinda weird
-			int x = (int)(2f / 10f * GetWidth());
-			int y = (int)(2f / 10f * GetHeight());
-			int w = (int)(4f / 10f * GetWidth());
-			int h = (int)(4f / 10f * GetHeight());
-			SetBoundingRectangle(new Rectangle(x, y, w, h));
+			// 115, 90 are magic numbers that seem to work well enough.
+			SetBoundingRectangle(new Rectangle(115, 115, 90, 90));
 		}
 
 		public void InitializeAnimations()
@@ -142,5 +137,5 @@ namespace UglyDuckling.Code.Entities
 				s.Remove();
 			}
 		}
-	}
+    }
 }
