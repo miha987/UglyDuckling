@@ -217,6 +217,16 @@
 /processorParam:TextureFormat=Color
 /build:idle_animation_3.png
 
+#begin Londrina.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Londrina.spritefont
+
+#begin LondrinaSolid-Regular.ttf
+/copy:LondrinaSolid-Regular.ttf
+
 #begin seed1.png
 /importer:TextureImporter
 /processor:TextureProcessor

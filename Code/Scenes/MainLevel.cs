@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using UglyDuckling.Code.ChickenControl;
@@ -53,6 +54,8 @@ namespace UglyDuckling.Code.Scenes
 		public override void Initialize()
 		{
 			base.Initialize();
+
+			AddEntity(new SeedCountHud());
 
 			Player player = new Player(NamedPositions.ChickenCoopDoor);
 			AddEntity(player);

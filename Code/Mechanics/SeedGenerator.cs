@@ -46,6 +46,8 @@ namespace UglyDuckling.Code.Mechanics
                 EntityManager.AddEntity(s);
             }
 
+            // hardcoded number of seeds :|
+            GameState.Instance.SetVar<int>("totalSeeds", 16);
         }
 
     }
