@@ -23,8 +23,8 @@ namespace UglyDuckling.Code.HUDs
             base.Initialize();
 
             int bannerHeight = GameState.Instance.GetVar<int>("banner_height");
-            int x = GameState.Instance.GetCurrentScene().GetWindowWidth() - 220;
-            int y = GameState.Instance.GetCurrentScene().GetWindowHeight() - bannerHeight - 50;
+            int x = GameState.Instance.GetCurrentScene().GetWindowWidth() - 260;
+            int y = GameState.Instance.GetCurrentScene().GetWindowHeight() - bannerHeight - 110;
             SetPosition(new Vector2(x, y));
         }
 

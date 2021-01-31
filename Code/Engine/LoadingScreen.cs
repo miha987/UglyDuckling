@@ -39,7 +39,7 @@ namespace UglyDuckling.Code.Engine
 
 		public virtual void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.GraphicsDevice.Clear(Color.Cyan);
+			spriteBatch.GraphicsDevice.Clear(new Color(163, 173, 113));
 		}
 	}
 }

@@ -13,17 +13,18 @@ namespace UglyDuckling.Code.Scenes
 		{
 			base.LoadTextures();
 
-			AddTexture("bg_test_1", "background");
+			//AddTexture("bg_test_1", "background");
+			AddTexture("win_screen", "win_screen");
 		}
 
 		public override void Initialize()
 		{
 			base.Initialize();
 
-			Background background = new Background(new Vector2(1000, 1000));
+			//Background background = new Background(new Vector2(1000, 1000));
 
-			//GameOverScreen background = new GameOverScreen(new Vector2(0, 0));
-			//AddEntity(background);
+			WinScreen background = new WinScreen(new Vector2(0, 0));
+			AddEntity(background);
 		}
 
 		public override void Update(GameTime gameTime)
