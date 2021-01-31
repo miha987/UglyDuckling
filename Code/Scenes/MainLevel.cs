@@ -30,6 +30,7 @@ namespace UglyDuckling.Code.Scenes
 
 			AddTexture("TestImage", "test");
 			AddTexture("bg_wip_2", "background");
+			AddTexture("fg_test_1", "foreground");
 			AddTexture("arrows3", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			//AddTexture("temporary_chicken", "chicken");
@@ -63,6 +64,7 @@ namespace UglyDuckling.Code.Scenes
 			GameState.Instance.SetVar<int>("background_height", 0); // SET IN BACKGROUND CLASS
 			GameState.Instance.SetVar<int>("background_y", 0); // SET IN BACKGROUND CLASS
 			AddEntity(new Background(new Vector2(0, 0)));
+			AddEntity(new Foreground(new Vector2(0, 0)));
 			GameState.Instance.SetVar<int>("BEAT_Y", GetWindowHeight() - 150);
 
 			BeatHUD beatHUD = new BeatHUD();
