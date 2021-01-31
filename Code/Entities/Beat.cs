@@ -9,7 +9,7 @@ namespace UglyDuckling.Code.Entities
 {
 	class Beat : Entity
 	{
-		private const int SIZE = 64;
+		private const int SIZE = 128;
 		private const int SUSPICION_RATE = 10;
 		
 		public double StartTime;

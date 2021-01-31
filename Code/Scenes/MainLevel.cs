@@ -30,7 +30,7 @@ namespace UglyDuckling.Code.Scenes
 
 			AddTexture("TestImage", "test");
 			AddTexture("bg_test_2", "background");
-			AddTexture("arrows", "arrows");
+			AddTexture("arrows1", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			//AddTexture("temporary_chicken", "chicken");
 			AddTexture("brown_duck_spritesheet_FINAL", "brown_duck");
