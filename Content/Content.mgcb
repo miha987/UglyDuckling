@@ -85,6 +85,30 @@
 /processorParam:TextureFormat=Color
 /build:arrows1.png
 
+#begin arrows2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:arrows2.png
+
+#begin arrows3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:arrows3.png
+
 #begin banner_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -239,6 +263,12 @@
 #begin LondrinaSolid-Regular.ttf
 /copy:LondrinaSolid-Regular.ttf
 
+#begin quack_quack_boom.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:quack_quack_boom.mp3
+
 #begin seed1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -250,6 +280,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:seed1.png
+
+#begin seme.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:seme.png
 
 #begin song1_wip3.mp3
 /importer:Mp3Importer

@@ -99,7 +99,7 @@ namespace UglyDuckling.Code.Mechanics
 
 		public void PlaySong()
 		{
-			SoundManager.PlaySong(BeatSongName);
+			SoundManager.PlaySong(BeatSongName, false);
 			Playing = true;
 		}
 
