@@ -3,8 +3,10 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UglyDuckling.Code.Engine;
 using UglyDuckling.Code.Entities;
 using UglyDuckling.Code.HUDs;
+using UglyDuckling.Code.LoadingScreens;
 
 namespace UglyDuckling.Code.Scenes
 {
@@ -25,6 +27,11 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("bg_test_2", "background");
 			AddTexture("arrows3", "arrows");
 			AddTexture("brown_duck_spritesheet_FINAL", "brown_duck");
+		}
+
+		public override LoadingScreen GetLoadingScreen(Scene scene)
+		{
+			return new MainLoadingScreen(scene);
 		}
 
 		public override void Initialize()

@@ -3,8 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using UglyDuckling.Code.ChickenControl;
+using UglyDuckling.Code.Engine;
 using UglyDuckling.Code.Entities;
 using UglyDuckling.Code.HUDs;
+using UglyDuckling.Code.LoadingScreens;
 using UglyDuckling.Code.Mechanics;
 
 namespace UglyDuckling.Code.Scenes
@@ -22,6 +24,11 @@ namespace UglyDuckling.Code.Scenes
 			this.ChickenController = new ChickenController(EntityManager, 5);
 			this.SeedGenerator = new SeedGenerator(EntityManager);
 			SeedGenerator.GenerateSeeds();
+		}
+
+		public override LoadingScreen GetLoadingScreen(Scene scene)
+		{
+			return new MainLoadingScreen(scene);
 		}
 
 		public override void LoadTextures()
