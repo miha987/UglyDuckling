@@ -23,7 +23,7 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("bg_test_2", "background");
-			AddTexture("arrows1", "arrows");
+			AddTexture("arrows3", "arrows");
 			AddTexture("brown_duck_spritesheet_FINAL", "brown_duck");
 		}
 
