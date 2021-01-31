@@ -30,7 +30,7 @@ namespace UglyDuckling.Code.Scenes
 
 			AddTexture("TestImage", "test");
 			AddTexture("bg_test_2", "background");
-			AddTexture("arrows1", "arrows");
+			AddTexture("arrows3", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			//AddTexture("temporary_chicken", "chicken");
 			AddTexture("brown_duck_spritesheet_FINAL", "brown_duck");
@@ -39,14 +39,14 @@ namespace UglyDuckling.Code.Scenes
 			AddTexture("banner_2", "banner");
 			AddTexture("footprint_1", "footprint");
 			AddTexture("suspicion_bar_1_transparent", "suspicion_bar");
-			AddTexture("seed1", "seed1");
+			AddTexture("seme", "seed1");
 		}
 
 		public override void LoadSounds()
 		{
 			base.LoadSounds();
 
-			AddSong("song1_wip4", "main_theme");
+			AddSong("quack_quack_boom", "main_theme");
 			//AddSong("song1_wip3", "main_theme");
 			//AddSong("song2_wip1", "main_theme");
 		}
