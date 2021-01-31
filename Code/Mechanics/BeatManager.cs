@@ -126,43 +126,49 @@ namespace UglyDuckling.Code.Mechanics
 			TimePassedOffset += gameTime.ElapsedGameTime.TotalMilliseconds;
 			TimePassedTotal += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-			if (Playing && TimePassedTotal < END_BEAT_TIME)
+			if (Playing)
 			{
 				GameState.Instance.SetVar<bool>("is_beat", false);
 
 				List<Beat> beatList = GameState.Instance.GetVar<List<Beat>>("beat_list");
 
 				//if (TimePassedOffset > BeatStep)
-				double startTime = BeatList[0].StartTime;
-				if (TimePassedTotal >= BeatList[0].StartTime)
+				if (beatList.Count > 0)
 				{
-					TimePassedOffset = TimePassedOffset % BeatStep;
+					double startTime = BeatList[0].StartTime;
+					if (TimePassedTotal >= BeatList[0].StartTime)
+					{
+						TimePassedOffset = TimePassedOffset % BeatStep;
 
-					//Beat beat = beatList[0];
-					Beat beat = BeatList[0];
-					GameState.Instance.SetVar<bool>("is_beat", true);
-					GameState.Instance.SetVar<Beat>("current_beat", beat);
-					//Trace.WriteLine(beat.Type);
+						//Beat beat = beatList[0];
+						Beat beat = BeatList[0];
+						GameState.Instance.SetVar<bool>("is_beat", true);
+						GameState.Instance.SetVar<Beat>("current_beat", beat);
+						//Trace.WriteLine(beat.Type);
 
-					//if (beat.Type == 3)
-					//{
-					//	int a = 1;
-					//}
+						//if (beat.Type == 3)
+						//{
+						//	int a = 1;
+						//}
 
-					// DEBUG!!!!!!!!!!!
-					// beat.RemoveBeat();
+						// DEBUG!!!!!!!!!!!
+						//beat.RemoveBeat();
 
-					//beatList.RemoveAt(0);
-					BeatList.RemoveAt(0);
-
-					Beat newBeat = NewBeat();
-					beatList.Add(newBeat);
-					BeatList.Add(newBeat);
+						//beatList.RemoveAt(0);
+						BeatList.RemoveAt(0);
 
 
-					GameState.Instance.SetVar<List<Beat>>("beat_list", beatList);
+						if (TimePassedTotal < END_BEAT_TIME)
+						{
+							Beat newBeat = NewBeat();
+							beatList.Add(newBeat);
+							BeatList.Add(newBeat);
+						}
+
+
+						GameState.Instance.SetVar<List<Beat>>("beat_list", beatList);
+					}
 				}
-
 			}
 
 			if (TimePassedTotal > WIN_TIME)
