@@ -17,7 +17,7 @@ namespace UglyDuckling.Code.Scenes
 		public MainLevel()
 		{
 			GameState.Instance.SetVar<int>("suspicion", 0);
-			GameState.Instance.SetVar<int>("max_suspicion", 9000);
+			GameState.Instance.SetVar<int>("max_suspicion", 100);
 
 			this.ChickenController = new ChickenController(EntityManager, 5);
 			this.SeedGenerator = new SeedGenerator(EntityManager);

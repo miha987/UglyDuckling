@@ -133,7 +133,7 @@ namespace UglyDuckling.Code.Mechanics
 				List<Beat> beatList = GameState.Instance.GetVar<List<Beat>>("beat_list");
 
 				//if (TimePassedOffset > BeatStep)
-				if (beatList.Count > 0)
+				if (BeatList.Count > 0)
 				{
 					double startTime = BeatList[0].StartTime;
 					if (TimePassedTotal >= BeatList[0].StartTime)

@@ -10,7 +10,7 @@ namespace UglyDuckling.Code.Entities
 	class Beat : Entity
 	{
 		private const int SIZE = 128;
-		private const int SUSPICION_RATE = 10;
+		public static int SUSPICION_RATE = 10;
 		
 		public double StartTime;
 		public int Type; // 0 - UP, 1 - RIGHT, 2 - DOWN, 3 - LEFT

@@ -44,6 +44,8 @@ namespace UglyDuckling.Code.Entities
 
 			if (keyState.IsKeyDown(Keys.Up) && !prevKeyState.IsKeyDown(Keys.Up))
 			{
+				bool ok = false;
+
 				foreach (Beat beat in beatList)
 				{
 					Rectangle bRect = beat.GetRectangle();
@@ -52,47 +54,81 @@ namespace UglyDuckling.Code.Entities
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
+						ok = true;
 						break;
 					}
+				}
+
+				if (!ok)
+				{
+					int suspicion = GameState.Instance.GetVar<int>("suspicion");
+					GameState.Instance.SetVar<int>("suspicion", suspicion + Beat.SUSPICION_RATE);
 				}
 			}
 
 			if (keyState.IsKeyDown(Keys.Right) && !prevKeyState.IsKeyDown(Keys.Right))
 			{
+				bool ok = false;
+
 				foreach (Beat beat in beatList)
 				{
 					if (beat.Type == 1 && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
+						ok = true;
 						break;
 					}
+				}
+
+				if (!ok)
+				{
+					int suspicion = GameState.Instance.GetVar<int>("suspicion");
+					GameState.Instance.SetVar<int>("suspicion", suspicion + Beat.SUSPICION_RATE);
 				}
 			}
 
 			if (keyState.IsKeyDown(Keys.Down) && !prevKeyState.IsKeyDown(Keys.Down))
 			{
+				bool ok = false;
+
 				foreach (Beat beat in beatList)
 				{
 					if (beat.Type == 2 && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
+						ok = true;
 						break;
 					}
+				}
+
+				if (!ok)
+				{
+					int suspicion = GameState.Instance.GetVar<int>("suspicion");
+					GameState.Instance.SetVar<int>("suspicion", suspicion + Beat.SUSPICION_RATE);
 				}
 			}
 
 			if (keyState.IsKeyDown(Keys.Left) && !prevKeyState.IsKeyDown(Keys.Left))
 			{
+				bool ok = false;
+
 				foreach (Beat beat in beatList)
 				{
 					if (beat.Type == 3 && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
+						ok = true;
 						break;
 					}
+				}
+
+				if (!ok)
+				{
+					int suspicion = GameState.Instance.GetVar<int>("suspicion");
+					GameState.Instance.SetVar<int>("suspicion", suspicion + Beat.SUSPICION_RATE);
 				}
 			}
 		}
