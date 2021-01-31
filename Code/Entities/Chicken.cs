@@ -70,7 +70,9 @@ namespace UglyDuckling.Code.Entities
             {
 				MoveTowardsTarget(gameTime);
             }
-        }
+
+			UpdateZ();
+		}
 
 		private void CheckBeat()
 		{
@@ -94,6 +96,26 @@ namespace UglyDuckling.Code.Entities
 				SetAnimation("idle");
 
 			}
+		}
+
+		public void UpdateZ()
+		{
+			int backgroundHeight = GameState.Instance.GetVar<int>("background_height");
+			int backgroundY = GameState.Instance.GetVar<int>("background_y");
+
+			if (backgroundHeight == 0)
+				return;
+
+			float factor = (GetPosition().Y - (backgroundY - backgroundHeight)) / backgroundHeight;
+			int newZ = (int)(factor * 800);
+
+			if (newZ > 800)
+				newZ = 800;
+
+			if (newZ < 0)
+				newZ = 0;
+
+			SetZ(newZ);
 		}
 
 		public void PerformInitialMovementProcedure(double delaySeconds)

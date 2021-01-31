@@ -15,7 +15,7 @@ namespace UglyDuckling.Code.Entities
 		public Player(Vector2 position) : base(position)
 		{
 			SetTexture("brown_duck");
-			SetZ(10);
+			SetZ(50);
 			SetCheckCollisions(true);
 			SetCollidable(true);
 
@@ -60,6 +60,7 @@ namespace UglyDuckling.Code.Entities
 			//Debug.WriteLine("Player position: " + GetPosition());
 
 			CheckKeyboard(gameTime);
+			UpdateZ();
 		}
 
 		public override void PostUpdate(GameTime gameTime)
@@ -69,7 +70,25 @@ namespace UglyDuckling.Code.Entities
 			CheckSeedPickups(gameTime);
 		}
 
-		//
+		public void UpdateZ()
+		{
+			int backgroundHeight = GameState.Instance.GetVar<int>("background_height");
+			int backgroundY = GameState.Instance.GetVar<int>("background_y");
+			
+			if (backgroundHeight == 0)
+				return;
+
+			float factor = (GetPosition().Y - (backgroundY - backgroundHeight)) / backgroundHeight;
+			int newZ = (int)(factor * 800);
+			
+			if (newZ > 800)
+				newZ = 800;
+
+			if (newZ < 0)
+				newZ = 0;
+
+			SetZ(newZ);
+		}
 
 		private void CheckKeyboard(GameTime gameTime)
 		{

@@ -17,7 +17,7 @@ namespace UglyDuckling.Code.Entities
 			//SetCheckCollisions(true);
 			SetCollidable(false);
 			SetStatic(true);
-			SetZ(95);
+			SetZ(950);
 		}
 
 		public override void Initialize()

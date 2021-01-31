@@ -37,6 +37,7 @@ namespace UglyDuckling.Code.ChickenControl
             for (int i = 0; i < chickenCount; i++)
             {
                 Chicken c = new Chicken();
+                c.SetZ(10 + i);
                 Chickens.Add(c);
                 EntityManager.AddEntity(c);
             }

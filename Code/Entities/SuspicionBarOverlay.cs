@@ -17,7 +17,7 @@ namespace UglyDuckling.Code.Entities
 			SetCollidable(false);
 			SetStatic(true);
 			//SetTexture("suspicion_bar");
-			SetZ(100);
+			SetZ(1000);
 
 			SuspicionBar = suspicionBar;
 		}

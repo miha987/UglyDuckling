@@ -52,7 +52,7 @@ namespace UglyDuckling.Code.Mechanics
 
 			BeatList = new List<Beat>();
 
-			MediaPlayer.Volume = 0.2f;
+			MediaPlayer.Volume = 0.7f;
 
 			FirstBeat = true;
 
@@ -65,7 +65,7 @@ namespace UglyDuckling.Code.Mechanics
 
 			for (int i = 0; i < 6; i++)
 			{
-				Beat beat = NewBeat();
+				Beat beat = NewBeat(false);
 				beatList.Add(beat);
 				BeatList.Add(beat);
 			}
@@ -73,24 +73,24 @@ namespace UglyDuckling.Code.Mechanics
 			GameState.Instance.SetVar<List<Beat>>("beat_list", beatList);
 		}
 
-		public Beat NewBeat(bool updateLastBeatTime=false)
+		public Beat NewBeat(bool visible=true)
 		{
 			//Trace.WriteLine("BEAT!!");
 
 			int ARROW_OFFSET = 124;
 
 			int type = BeatRandom.Next(0, 4);
-			double time = LastBeatTime + BeatStep;
+			//double time = LastBeatTime + BeatStep;
 			double startTime = LastStartTime + BeatStep;
 			//float beatX = (float)((time - ARROW_OFFSET) * Beat.SPEED_RATE) + GameState.Instance.GetCurrentScene().GetWindowWidth() / 2;
 			float beatX = (float)((BeatStep * (BeatList.Count + 1) - ARROW_OFFSET - BeatStep/2) * Beat.SPEED_RATE) + GameState.Instance.GetCurrentScene().GetWindowWidth() / 2;
 
-			Beat beat = new Beat(new Vector2(beatX, GameState.Instance.GetVar<int>("BEAT_Y")), startTime, type);
+			Beat beat = new Beat(new Vector2(beatX, GameState.Instance.GetVar<int>("BEAT_Y")), startTime, type, visible);
 			//beat.LoadContent();
 			GameState.Instance.GetCurrentScene().AddEntity(beat);
 
-			if (updateLastBeatTime)
-				LastBeatTime += BeatStep;
+			//if (updateLastBeatTime)
+			//	LastBeatTime += BeatStep;
 
 			LastStartTime += BeatStep;
 
@@ -167,6 +167,7 @@ namespace UglyDuckling.Code.Mechanics
 
 			if (TimePassedTotal > WIN_TIME)
 			{
+				SoundManager.StopSong();
 				GameState.Instance.SetScene(new WinScene());
 			}
 		}
