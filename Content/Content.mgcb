@@ -13,18 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../../Users/Miha/Pictures/ugly_duckling/bg_wip_3.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../../../Users/Miha/Pictures/ugly_duckling/bg_wip_3.jpg;bg_wip_3.jpg
-
 #begin arrow_down.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -192,6 +180,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:bg_wip_2.jpg
+
+#begin bg_wip_3.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bg_wip_3.jpg
 
 #begin brown_duck_spritesheet.png
 /importer:TextureImporter
