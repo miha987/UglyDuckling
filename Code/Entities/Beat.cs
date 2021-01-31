@@ -18,18 +18,20 @@ namespace UglyDuckling.Code.Entities
 		public static double SPEED_RATE = 0.4;
 
 		private bool Missed;
+		private bool Visible;
 
-		public Beat(Vector2 position, double startTime, int type) : base(position)
+		public Beat(Vector2 position, double startTime, int type, bool visible=true) : base(position)
 		{
 			SetTexture("arrows");
 			SetStatic(true);
-			SetZ(103);
+			SetZ(1030);
 			AddTag("beat");
 			SetCollidable(false);
 			
 
 			StartTime = startTime;
 			Type = type;
+			Visible = visible;
 
 			Missed = false;
 		}
@@ -62,7 +64,7 @@ namespace UglyDuckling.Code.Entities
 			if (GetProjectedPosition().X < 0)
 				RemoveBeat();
 
-			if (!Missed && GetProjectedPosition().X < GameState.Instance.GetCurrentScene().GetWindowWidth()/2 - GetWidth() - 5)
+			if (Visible && !Missed && GetProjectedPosition().X < GameState.Instance.GetCurrentScene().GetWindowWidth()/2 - GetWidth() - 5)
 			{
 				int suspicion = GameState.Instance.GetVar<int>("suspicion");
 				GameState.Instance.SetVar<int>("suspicion", suspicion + SUSPICION_RATE);
@@ -76,6 +78,9 @@ namespace UglyDuckling.Code.Entities
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
+			if (!Visible)
+				return;
+
 			float opacityFactor = GameState.Instance.GetVar<float>("distance_to_chicken_percent");
 			Rectangle rect = new Rectangle(Type * SIZE, 0, SIZE, SIZE);
 			spriteBatch.Draw(GetTexture(), new Rectangle((int)GetProjectedPosition().X, (int)GetProjectedPosition().Y, rect.Width, rect.Height), rect, Color.White * opacityFactor, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);

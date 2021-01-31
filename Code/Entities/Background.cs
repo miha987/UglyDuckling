@@ -8,8 +8,16 @@ namespace UglyDuckling.Code.Entities
         public Background(Vector2 position) : base(position)
         {
             SetTexture("background");
-            SetScale(0.7f);
             SetZ(-20);
         }
-    }
+
+		public override void Initialize()
+		{
+			base.Initialize();
+
+            SetScale(0.7f);
+            GameState.Instance.SetVar<int>("background_height", GetHeight());
+            GameState.Instance.SetVar<int>("background_y", (int)GetProjectedPosition().Y);
+        }
+	}
 }

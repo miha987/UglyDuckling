@@ -16,7 +16,7 @@ namespace UglyDuckling.Code.Scenes
 		public MainLevel()
 		{
 			GameState.Instance.SetVar<int>("suspicion", 0);
-			GameState.Instance.SetVar<int>("max_suspicion", 100);
+			GameState.Instance.SetVar<int>("max_suspicion", 9000);
 
 			this.ChickenController = new ChickenController(EntityManager, 5);
 			this.SeedGenerator = new SeedGenerator(EntityManager);
@@ -57,6 +57,8 @@ namespace UglyDuckling.Code.Scenes
 			Player player = new Player(NamedPositions.ChickenCoopDoor);
 			AddEntity(player);
 
+			GameState.Instance.SetVar<int>("background_height", 0); // SET IN BACKGROUND CLASS
+			GameState.Instance.SetVar<int>("background_y", 0); // SET IN BACKGROUND CLASS
 			AddEntity(new Background(new Vector2(0, 0)));
 			GameState.Instance.SetVar<int>("BEAT_Y", GetWindowHeight() - 150);
 

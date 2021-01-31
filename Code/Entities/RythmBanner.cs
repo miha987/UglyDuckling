@@ -13,7 +13,7 @@ namespace UglyDuckling.Code.Entities
 			SetTexture("banner");
 			SetStatic(true);
 			SetCollidable(false);
-			SetZ(90);
+			SetZ(900);
 		}
 
 		public override void Initialize()

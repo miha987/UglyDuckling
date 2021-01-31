@@ -18,7 +18,7 @@ namespace UglyDuckling.Code.Entities
 			SetCollidable(false);
 			SetStatic(true);
 			SetTexture("suspicion_bar");
-			SetZ(110);
+			SetZ(1010);
 		}
 
 		public override void Initialize()

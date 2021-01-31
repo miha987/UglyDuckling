@@ -336,7 +336,8 @@ namespace UglyDuckling
 
 		public Rectangle GetRectangle()
 		{
-			Vector2 position = GetProjectedPosition();
+			//Vector2 position = GetProjectedPosition();
+			Vector2 position = Position;
 			return new Rectangle((int)(position.X - this.OriginPoint.X + BoundingRectangle.X), (int)(position.Y - this.OriginPoint.Y + BoundingRectangle.Y), BoundingRectangle.Width, BoundingRectangle.Height);
 		}
 
