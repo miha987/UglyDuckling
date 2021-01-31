@@ -100,8 +100,9 @@ namespace UglyDuckling.Code.Entities
 		private void LowerSuspicion()
         {
 			// lower suspicion for every succesfully caught beat
-			int suspicion = GameState.Instance.GetVar<int>("suspicion");
-			GameState.Instance.SetVar<int>("suspicion", suspicion - SUSPICION_RECOVERY_RATE);
+			int suspicion = GameState.Instance.GetVar<int>("suspicion") - SUSPICION_RECOVERY_RATE;
+			if (suspicion < 0) suspicion = 0;
+			GameState.Instance.SetVar<int>("suspicion", suspicion);
 		}
 
 		public override void Update(GameTime gameTime)
