@@ -29,7 +29,7 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("TestImage", "test");
-			AddTexture("bg_test_2", "background");
+			AddTexture("bg_wip_2", "background");
 			AddTexture("arrows3", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			//AddTexture("temporary_chicken", "chicken");
