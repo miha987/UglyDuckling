@@ -36,7 +36,7 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("TestImage", "test");
-			AddTexture("bg_wip_2", "background");
+			AddTexture("bg_wip_3", "background");
 			AddTexture("fg_test_1", "foreground");
 			AddTexture("arrows3", "arrows");
 			AddTexture("bar_placeholder", "bar");
