@@ -157,6 +157,10 @@ namespace UglyDuckling.Code.Mechanics
 						//beatList.RemoveAt(0);
 						BeatList.RemoveAt(0);
 
+						if (TimePassedTotal > (END_BEAT_TIME - 10_000))
+                        {
+							GameState.Instance.SetVar<bool>("immediately_finish", true);
+                        }
 
 						if (TimePassedTotal < END_BEAT_TIME)
 						{

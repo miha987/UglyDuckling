@@ -110,7 +110,8 @@ namespace UglyDuckling.Code.ChickenControl
 
         private void ToTheNextCheckpoint()
         {
-            if (CurrentCheckpointIndex + 1 >= Checkpoints.Count)
+            bool immediatelyFinish = GameState.Instance.GetVar<bool>("immediately_finish", false);
+            if (CurrentCheckpointIndex + 1 >= Checkpoints.Count || immediatelyFinish)
             {
                 if (!AnyChickenInFinalMovementProcedure())
                 {

@@ -69,6 +69,17 @@ namespace UglyDuckling
 			return (T)this.StateVariables[name].value;
 		}
 
+		public T GetVar<T>(String name, T defaultValue)
+		{
+			if (HasVar(name))
+            {
+				return (T)this.StateVariables[name].value;
+			} else
+            {
+				return defaultValue;
+            }
+		}
+
 		public bool HasVar(String name)
 		{
 			return StateVariables.ContainsKey(name);
