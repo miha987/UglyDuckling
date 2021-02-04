@@ -27,7 +27,7 @@ namespace UglyDuckling.Code.Entities
 		{
 			base.LoadContent();
 			// 115, 90 are magic numbers that seem to work well enough.
-			SetBoundingRectangle(new Rectangle(115, 130, 90, 90));
+			SetBoundingRectangle(new Rectangle(115, 130, 90, 125));
 		}
 
 		public void InitializeAnimations(double idleTimePerFrame, double danceTimePerFrame)
