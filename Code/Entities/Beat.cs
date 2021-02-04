@@ -18,7 +18,7 @@ namespace UglyDuckling.Code.Entities
 		public static double SPEED_RATE = 0.4;
 
 		private bool Missed;
-		private bool Visible;
+		public bool Visible;
 
 		public Beat(Vector2 position, double startTime, int type, bool visible=true) : base(position)
 		{

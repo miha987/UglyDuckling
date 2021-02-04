@@ -13,7 +13,7 @@ namespace UglyDuckling.Code.HUDs
 
 		public BeatHUD() : base(new Vector2(0, 0))
 		{
-			SetZ(100);
+			SetZ(1009);
 			SetPausable(false);
 			SetStatic(true);
 		}

@@ -36,7 +36,8 @@ namespace UglyDuckling.Code.Scenes
 				GameState.Instance.SetScene(new MainMenu());
 
 			if (keyState.IsKeyDown(Keys.Enter) && !prevKeyState.IsKeyDown(Keys.Enter))
-				GameState.Instance.SetScene(new MainMenu());
+				GameState.Instance.SetScene((Scene)Activator.CreateInstance(GameState.Instance.GetVar<Scene>("current_level").GetType()));
+				//GameState.Instance.SetScene(new MainMenu());
 
 			//if (Keyboard.GetState().IsKeyDown(Keys.Escape))
 			//	GameState.Instance.GetGameReference().Exit();

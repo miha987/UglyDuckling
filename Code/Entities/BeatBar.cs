@@ -50,7 +50,7 @@ namespace UglyDuckling.Code.Entities
 				{
 					Rectangle bRect = beat.GetRectangle();
 					Rectangle mRect = GetRectangle();
-					if (beat.Type == 0 && beat.GetRectangle().Intersects(GetRectangle()))
+					if (beat.Type == 0 && beat.Visible && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
@@ -72,7 +72,7 @@ namespace UglyDuckling.Code.Entities
 
 				foreach (Beat beat in beatList)
 				{
-					if (beat.Type == 1 && beat.GetRectangle().Intersects(GetRectangle()))
+					if (beat.Type == 1 && beat.Visible && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
@@ -94,7 +94,7 @@ namespace UglyDuckling.Code.Entities
 
 				foreach (Beat beat in beatList)
 				{
-					if (beat.Type == 2 && beat.GetRectangle().Intersects(GetRectangle()))
+					if (beat.Type == 2 && beat.Visible && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();
@@ -116,7 +116,7 @@ namespace UglyDuckling.Code.Entities
 
 				foreach (Beat beat in beatList)
 				{
-					if (beat.Type == 3 && beat.GetRectangle().Intersects(GetRectangle()))
+					if (beat.Type == 3 && beat.Visible && beat.GetRectangle().Intersects(GetRectangle()))
 					{
 						LowerSuspicion();
 						beat.RemoveBeat();

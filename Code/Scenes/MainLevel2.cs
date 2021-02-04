@@ -20,7 +20,9 @@ namespace UglyDuckling.Code.Scenes
 			GameState.Instance.SetVar<int>("suspicion", 0);
 			GameState.Instance.SetVar<int>("max_suspicion", 100);
 
-			ChickenController = new ChickenController(EntityManager, 5);
+			GameState.Instance.SetVar<bool>("player_won", false);
+
+			ChickenController = new ChickenController(EntityManager, 5, 0.0833, 0.050000);
 			SeedGenerator = new SeedGenerator(EntityManager);
 			SeedGenerator.GenerateSeeds();
 		}
@@ -30,8 +32,9 @@ namespace UglyDuckling.Code.Scenes
 			base.LoadTextures();
 
 			AddTexture("TestImage", "test");
-			AddTexture("bg_test_2", "background");
-			AddTexture("arrows2", "arrows");
+			AddTexture("bg_wip_3", "background");
+			AddTexture("fg_test_1", "foreground");
+			AddTexture("arrows3", "arrows");
 			AddTexture("bar_placeholder", "bar");
 			//AddTexture("temporary_chicken", "chicken");
 			AddTexture("brown_duck_spritesheet_FINAL", "brown_duck");
@@ -57,13 +60,17 @@ namespace UglyDuckling.Code.Scenes
 			base.Initialize();
 
 			AddEntity(new SeedCountHud());
+			AddEntity(new MainHUD());
 
-			Player player = new Player(NamedPositions.ChickenCoopDoor);
+			Player player = new Player(NamedPositions.ChickenCoopDoor, 0.0833, 0.050000);
 			AddEntity(player);
+
+			GameState.Instance.SetVar<bool>("immediately_finish", false);
 
 			GameState.Instance.SetVar<int>("background_height", 0); // SET IN BACKGROUND CLASS
 			GameState.Instance.SetVar<int>("background_y", 0); // SET IN BACKGROUND CLASS
 			AddEntity(new Background(new Vector2(0, 0)));
+			AddEntity(new Foreground(new Vector2(0, 0)));
 			GameState.Instance.SetVar<int>("BEAT_Y", GetWindowHeight() - 150);
 
 			BeatHUD beatHUD = new BeatHUD();
@@ -84,12 +91,15 @@ namespace UglyDuckling.Code.Scenes
 			GameState.Instance.SetVar<int>("max_distance_to_chicken", 600);
 			GameState.Instance.SetVar<float>("distance_to_chicken_percent", 1f);
 
+			GameState.Instance.SetVar<string>("current_level_name", "Level 3");
+			GameState.Instance.SetVar<Scene>("current_level", this);
+
 			// BANNER HARDCODED STUFF
 			float bannerScaleFactor = (float)GameState.Instance.GetCurrentScene().GetWindowWidth() / 4850;
 			GameState.Instance.SetVar<int>("banner_height", (int)(bannerScaleFactor * 590));
 
 
-			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme", 420);
+			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme", 420, 88000, 100000);
 			beatManager.PlaySong();
 			AddSpawnController(beatManager);
 		}
@@ -100,7 +110,7 @@ namespace UglyDuckling.Code.Scenes
 			ChickenController.Update(gameTime);
 
 			if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-				GameState.Instance.GetGameReference().Exit();
+				GameState.Instance.SetScene(new MainMenu());
 
 			int suspicion = GameState.Instance.GetVar<int>("suspicion");
 			int maxSuspicion = GameState.Instance.GetVar<int>("max_suspicion");
@@ -110,7 +120,11 @@ namespace UglyDuckling.Code.Scenes
 				StopSong();
 				GameState.Instance.SetScene(new GameOverScene());
 			}
-
+			
+			if (GameState.Instance.GetVar<bool>("player_won"))
+			{
+				GameState.Instance.SetScene(new WinScene());
+			}
 		}
 	}
 }

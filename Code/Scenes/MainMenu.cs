@@ -38,6 +38,8 @@ namespace UglyDuckling.Code.Scenes
 		{
 			base.Initialize();
 
+			StopSong();
+
 			GameState.Instance.SetVar<int>("background_height", 0); // SET IN BACKGROUND CLASS
 			GameState.Instance.SetVar<int>("background_y", 0); // SET IN BACKGROUND CLASS
 			Background background = new Background(new Vector2(1000, 500));
@@ -89,7 +91,7 @@ namespace UglyDuckling.Code.Scenes
 				GameState.Instance.GetGameReference().Exit();
 
 			if (keyState.IsKeyDown(Keys.Enter) && !prevKeyState.IsKeyDown(Keys.Enter))
-				GameState.Instance.SetScene(new MainLevel());
+				GameState.Instance.SetScene(new MainLevelEasy());
 		}
 	}
 }

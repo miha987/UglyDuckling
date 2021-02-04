@@ -29,14 +29,14 @@ namespace UglyDuckling.Code.ChickenControl
         private int CurrentCheckpointIndex = 0;
         
 
-        public ChickenController(EntityManager entityManager, int chickenCount)
+        public ChickenController(EntityManager entityManager, int chickenCount, double idleTimePerFrame = 0.0833, double danceTimePerFrame = 0.055556)
         {
             this.EntityManager = entityManager;
             this.CheckpointGenerator = new CheckpointGenerator();
 
             for (int i = 0; i < chickenCount; i++)
             {
-                Chicken c = new Chicken();
+                Chicken c = new Chicken(idleTimePerFrame, danceTimePerFrame);
                 c.SetZ(10 + i);
                 Chickens.Add(c);
                 EntityManager.AddEntity(c);

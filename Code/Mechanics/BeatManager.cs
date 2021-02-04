@@ -27,16 +27,16 @@ namespace UglyDuckling.Code.Mechanics
 		private double LastBeatTime; // local, needed for positioning beats
 		private double LastStartTime; // global, needed for detection if beat is current
 
-		private const double BEAT_TIME_THRESHOLD = 100;
-		private const double END_BEAT_TIME = 110000;
-		private const double WIN_TIME = 122000;
+		private double BEAT_TIME_THRESHOLD = 100;
+		private double END_BEAT_TIME = 110000;
+		private double WIN_TIME = 122000;
 
 		private List<Beat> BeatList;
 
 		private bool FirstBeat;
 
 
-		public BeatManager(SoundManager soundManager, string beatSongName, int beatStep=500)
+		public BeatManager(SoundManager soundManager, string beatSongName, int beatStep=500, int endBeatTime=110000, int winTIme = 122000)
 		{
 			SoundManager = soundManager;
 			BeatSongName = beatSongName;
@@ -52,9 +52,12 @@ namespace UglyDuckling.Code.Mechanics
 
 			BeatList = new List<Beat>();
 
-			MediaPlayer.Volume = 0.7f;
+			MediaPlayer.Volume = 0.2f;
 
 			FirstBeat = true;
+
+			END_BEAT_TIME = endBeatTime;
+			WIN_TIME = winTIme;
 
 			Initialize();
 		}
@@ -178,7 +181,7 @@ namespace UglyDuckling.Code.Mechanics
 			if (TimePassedTotal > WIN_TIME)
 			{
 				SoundManager.StopSong();
-				GameState.Instance.SetScene(new WinScene());
+				GameState.Instance.SetVar<bool>("player_won", true);
 			}
 		}
 	}

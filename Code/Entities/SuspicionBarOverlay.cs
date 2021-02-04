@@ -37,10 +37,13 @@ namespace UglyDuckling.Code.Entities
 			int suspicion = GameState.Instance.GetVar<int>("suspicion");
 			int maxSuspicion = GameState.Instance.GetVar<int>("max_suspicion");
 
-			double suspicionWidth = (suspicion * SuspicionBar.GetWidth() * 0.9f) / maxSuspicion;
+			double suspicionFactor = (double)suspicion / (double)maxSuspicion;
+			double suspicionWidth = suspicionFactor * SuspicionBar.GetWidth() * 0.9f;
+
 			//int suspicionY = (int)GetProjectedPosition().Y + GetHeight() - (int)suspicionHeight;
 			Rectangle drawSuspicionRect = new Rectangle((int)GetProjectedPosition().X, (int)GetProjectedPosition().Y, (int)suspicionWidth, (int)(SuspicionBar.GetHeight() * 0.20f));
-			spriteBatch.Draw(GetTexture(), drawSuspicionRect, drawSuspicionRect, Color.Red, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
+			//spriteBatch.Draw(GetTexture(), drawSuspicionRect, drawSuspicionRect, Color.Green, GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
+			spriteBatch.Draw(GetTexture(), drawSuspicionRect, drawSuspicionRect, Color.Lerp(new Color(148, 237, 49), new Color(217, 27, 4), (float)suspicionFactor), GetRotationAngle(), GetOriginPoint(), SpriteEffects.None, 0);
 		}
 	}
 }

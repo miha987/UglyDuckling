@@ -9,14 +9,15 @@ using UglyDuckling.Code.HUDs;
 using UglyDuckling.Code.LoadingScreens;
 using UglyDuckling.Code.Mechanics;
 
+
 namespace UglyDuckling.Code.Scenes
 {
-	class MainLevel : Scene
+	class MainLevelEasy : Scene
 	{
 		private ChickenController ChickenController;
 		private SeedGenerator SeedGenerator;
 
-		public MainLevel()
+		public MainLevelEasy()
 		{
 			GameState.Instance.SetVar<int>("suspicion", 0);
 			GameState.Instance.SetVar<int>("max_suspicion", 100);
@@ -97,16 +98,15 @@ namespace UglyDuckling.Code.Scenes
 			GameState.Instance.SetVar<int>("max_distance_to_chicken", 600);
 			GameState.Instance.SetVar<float>("distance_to_chicken_percent", 1f);
 
-			GameState.Instance.SetVar<string>("current_level_name", "Level 2");
+			GameState.Instance.SetVar<string>("current_level_name", "Level 1");
 			GameState.Instance.SetVar<Scene>("current_level", this);
-
 
 			// BANNER HARDCODED STUFF
 			float bannerScaleFactor = (float)GameState.Instance.GetCurrentScene().GetWindowWidth() / 4850;
 			GameState.Instance.SetVar<int>("banner_height", (int)(bannerScaleFactor * 590));
 
 
-			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme");
+			BeatManager beatManager = new BeatManager(GetSoundManager(), "main_theme", 1000);
 			beatManager.PlaySong();
 			AddSpawnController(beatManager);
 		}
@@ -130,7 +130,7 @@ namespace UglyDuckling.Code.Scenes
 
 			if (GameState.Instance.GetVar<bool>("player_won"))
 			{
-				GameState.Instance.SetScene(new MainLevel2());
+				GameState.Instance.SetScene(new MainLevel());
 			}
 		}
 	}
